@@ -10,7 +10,7 @@
 
         <menuitem
         id="lab_cachier_menu_child"
-        name="Cashier"
+        name="Cashier1"
         parent="lab_cachier_menu"
         sequence="12"
         action="lab_invoice_action"
