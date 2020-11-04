@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<odoo>ds
+<odoo>
     <data>
          <record id="lab_invoice_patient_invoice_view" model="ir.ui.view">
             <field name="name">account.invoice.patient.invoice_form</field>

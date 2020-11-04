@@ -5,6 +5,7 @@ import base64
 from io import BytesIO
 
 
+
 def generate_qr_code(name):
     qr = qrcode.QRCode(
              version=1,
