@@ -18,7 +18,7 @@
        <xpath expr="//div[@name='origin']" position="after">
              <div class="col-auto mw-100 mb-2" style="float:left;">
                 <strong>Patient Name:</strong>
-                <p class="m-0" t-field="o.partner_id"/>
+                <p class="m-0" t-field="o.patient"/>
             </div>
        </xpath>
 

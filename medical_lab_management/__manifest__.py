@@ -29,7 +29,7 @@
     'company': "Cybrosys Techno Solutions",
     'website': "https://www.cybrosys.com",
     'category': 'Industries',
-    'depends': ['base', 'mail', 'account'],
+    'depends': ['base', 'mail', 'account', 'contacts'],
     'data': [
         'security/lab_users.xml',
         'security/ir.model.access.csv',
@@ -47,6 +47,7 @@
         'report/report.xml',
         'report/lab_test_report.xml',
         'report/lab_patient_card.xml',
+        'views/send_email_template.xml',
     ],
     'images': ['static/description/banner.png'],
     'license': 'AGPL-3',

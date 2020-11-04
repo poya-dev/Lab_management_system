@@ -55,7 +55,9 @@ class LabPatient(models.Model):
     date = fields.Datetime(string='Date Requested', default=lambda s: fields.Datetime.now(), invisible=True)
     phone = fields.Char(string="Phone", required=True)
     email = fields.Char(string="Email", required=True)
+    # no_of_visitors = fields.Integer()
 
+    @api.depends('dob')
     def compute_age(self):
         for data in self:
             if data.dob:
@@ -66,14 +68,48 @@ class LabPatient(models.Model):
             else:
                 data.age = ''
 
+
+
+    def patient_register_confirmation(self, result):
+        
+        
+        message_body = "Dear " + result.patient.name + "," + "<br>You have successfully registered as Patient " \
+                                        + "<br>Your Patient ID : <bold>" + result.name + "<bold><br>Date : " + str(result.date) + \
+                '\bPlease wait until we confirm you<br>and will send you email<br><br>Thank you'
+
+        template_obj = self.env['mail.mail']
+        template_data = {
+            'subject': 'Patient register Confirmation',
+            'body_html': message_body,
+            'email_from': self.env.user.company_id.email,
+            'email_to': result.email
+        }
+        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Template data>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+        print(template_data)
+        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+        
+        template_id = template_obj.create(template_data)
+        template_obj.send(template_id)
+
+
     @api.model
     def create(self, vals):
         sequence = self.env['ir.sequence'].next_by_code('lab.patient')
+       
         vals['name'] = sequence or _('New')
         result = super(LabPatient, self).create(vals)
+        self.patient_register_confirmation(result)
+        print('True........................................................................')
         return result
 
     @api.onchange('patient')
     def detail_get(self):
-        self.phone = self.patient.phone
-        self.email = self.patient.email
+        for data in self:
+            if data.patient:
+                self.phone = data.patient.phone
+                self.email = data.patient.email
+            else:
+                self.phone = ''
+                self.email = ''
+        
+        

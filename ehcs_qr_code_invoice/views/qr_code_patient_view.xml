@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>ds
+    <data>
+         <record id="lab_patient_qr_code_view" model="ir.ui.view">
+            <field name="name">lab.patient.invoice_form</field>
+            <field name="model">lab.patient</field>
+            <field name="inherit_id" ref="medical_lab_management.view_lab_patient_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="qr_image" widget="image"/>
+                    <!-- <img t-att-src="'type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', qr_image, 600, 100)" style="width:300px;height:50px"/> -->
+
+                </xpath>
+            </field>
+        </record>   
+    </data>
+</odoo>
+
+

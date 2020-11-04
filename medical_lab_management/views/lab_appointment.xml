@@ -95,7 +95,7 @@
                                 icon="fa-pencil-square-o"
                                 context = "{'search_default_lab_request': [active_id]}"
                                 attrs="{'invisible': [('inv_count', '=', 0)]}">
-                                <field name="inv_count" widget="statinfo" string="Lab Invoice   "/>
+                                <field name="inv_count" widget="statinfo" string="Lab Invoice"/>
                             </button>
                         </div>
                         <group>
