@@ -89,7 +89,7 @@ class Appointment(models.Model):
             lab.write({'state': 'to_invoice'})
             if lab.patient_id:
                 curr_invoice = {
-                    'patient': lab.patient_id.patient.id,
+                    'partner_id': lab.patient_id.patient.id,
                     # 'account_id': lab.patient_id.patient.property_account_receivable_id.id,
                     'state': 'draft',
                     'move_type': 'out_invoice',
