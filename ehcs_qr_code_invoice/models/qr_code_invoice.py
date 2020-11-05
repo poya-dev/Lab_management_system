@@ -12,3 +12,15 @@ class QRCodeInvoice(models.Model):
     def _generate_qr_code(self):
         patient = self.env['lab.patient'].search([('patient', '=', self.partner_id.id)])
         self.qr_image = generate_qr_code(patient.name)
+
+    def sticker_barcode_generator(self):
+        # patient = self.env['lab.patient'].search([('patient', '=', self.partner_id.id)])
+        # self.qr_image = generate_qr_code(patient.name)
+        data = {
+            "qr_code_image": self.qr_image,
+        }
+        # print('=========================================')
+        # print(data)
+        return self.env.ref("ehcs_qr_code_invoice.sticker_barcode_action").report_action(
+            self, data=data
+        )
