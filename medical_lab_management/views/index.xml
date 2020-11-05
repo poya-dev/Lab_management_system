@@ -1,0 +1,91 @@
+<odoo>
+    <data>
+        <template id="index">
+            <t t-call="website.layout">
+                <title>practice</title>
+                <field name="arch" type="xml">
+
+                    <form action="/record/view">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">Patient Name</th>
+                                    <th scope="col">Patient ID</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Visa Info</th>
+                                    <th scope="col"> Blood Group</th>
+                                    <th scope="col"> Gender</th>
+                                    <th scope="col">Phone</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <t t-foreach="patient" t-as="patient">
+                                    <p>
+                                        <t t-esc="n"/>
+                                        <p>
+                                            <tr>
+                                                <!-- <th scope="row"></th> -->
+
+
+
+                                                <td>
+                                                    <t t-esc="patient.patient.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="patient.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="patient.age"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="patient.visa_info"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="patient.blood_group"/>
+                                                </td>
+                                                <td>
+                                                    <t t-if="patient.gender == 'm'">
+                                                        Male
+                                                    </t>
+                                                    <t t-if="patient.gender == 'f'">
+                                                        Female
+                                                    </t>
+                                                    <t t-if="patient.gender == 'ot'">
+                                                        Other
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="patient.phone"/>
+                                                </td>
+                                                <!-- <td>
+                                                    <t t-esc="patient.name"/>
+                                                </td> -->
+                                                <td>
+                                                    <a t-attf-href="/print/print">
+                                                        <button type="button" class="btn btn-success">Print</button>
+
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning">Download</button>
+                                                </td>
+
+
+                                            </tr>
+                                        </p>
+                                    </p>
+                                </t>
+                            </tbody>
+                        </table>
+
+                    </form>
+                </field>
+            </t>
+        </template>
+
+    </data>
+</odoo>

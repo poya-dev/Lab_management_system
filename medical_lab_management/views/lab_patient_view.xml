@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <menuitem id="menu_root_lab" name="Laboratory" sequence="40"
-                  groups="group_lab_management_user,group_lab_management_technician"/>
+        <menuitem id="menu_root_lab" name="Laboratory" sequence="40" groups="group_lab_management_user,group_lab_management_technician"/>
         <record model="ir.ui.view" id="kanban_view_patient">
             <field name="name">Patient Kanban</field>
             <field name="model">lab.patient</field>
@@ -18,8 +17,10 @@
                                 <div class="oe_kanban_details">
                                     <strong>
                                         <ul>
-                                            <li>Name :<field name="patient"/></li>
-                                            <li>Patient ID :<field name="name"/></li>
+                                            <li>Name :<field name="patient"/>
+                                            </li>
+                                            <li>Patient ID :<field name="name"/>
+                                            </li>
                                         </ul>
                                     </strong>
                                 </div>
@@ -57,19 +58,13 @@
                         <field name="patient_image" widget="image" class="oe_avatar"/>
                         <div name="title_name" class="oe_title">
                             <h3>
-                                <field name="title"
-                                    style="width: 30%%" />
+                                <field name="title" style="width: 30%%" />
                             </h3>
                             <h1>
                                 <table>
                                     <tr>
                                         <td>
-                                            <field name="patient"
-                                                required="1"
-                                                placeholder="FullName"
-                                                style="padding-right:10px"
-                                                domain="[('is_patient','=',True)]" context="{'search_default_is_patient':1, 'default_is_patient':1, 'default_customer':1}"
-                                            />
+                                            <field name="patient" required="1" placeholder="FullName" style="padding-right:10px" domain="[('is_patient','=',True)]" context="{'search_default_is_patient':1, 'default_is_patient':1, 'default_customer':1}" />
                                         </td>
                                     </tr>
                                 </table>
@@ -111,15 +106,12 @@
                 <search string="Patient">
                     <field name="patient" />
                     <field name="blood_group" />
-                     <field name="name" />
+                    <field name="name" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter name="blood_group" string="Blood Group"
-                            domain="[]" context="{'group_by':'blood_group'}" />
-                        <filter name="name" string="Patient ID"
-                            domain="[]" context="{'group_by':'name'}" />
-                        <filter name="patient" string="Patient"
-                            domain="[]" context="{'group_by':'patient'}" />
+                        <filter name="blood_group" string="Blood Group" domain="[]" context="{'group_by':'blood_group'}" />
+                        <filter name="name" string="Patient ID" domain="[]" context="{'group_by':'name'}" />
+                        <filter name="patient" string="Patient" domain="[]" context="{'group_by':'patient'}" />
                     </group>
                 </search>
             </field>
@@ -148,11 +140,8 @@
             <field name="company_id" eval="False" />
         </record>
 
-        <menuitem id="menu_lab_patient" name="Patient" sequence="10"
-            parent="menu_root_lab" groups="group_lab_management_user,group_lab_management_technician"/>
-        <menuitem id="menu_lab_patient_child" name="Patient" sequence="10"
-                  parent="menu_lab_patient" action="act_open_lab_patient_view"
-                  groups="group_lab_management_user,group_lab_management_technician"/>
+        <menuitem id="menu_lab_patient" name="Patient" sequence="10" parent="menu_root_lab" groups="group_lab_management_user,group_lab_management_technician"/>
+        <menuitem id="menu_lab_patient_child" name="Patient" sequence="10" parent="menu_lab_patient" action="act_open_lab_patient_view" groups="group_lab_management_user,group_lab_management_technician"/>
 
 
     </data>

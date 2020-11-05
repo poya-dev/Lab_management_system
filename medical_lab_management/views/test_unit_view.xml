@@ -58,14 +58,7 @@
                 </p>
             </field>
         </record>
-        <menuitem id="configuration_id"
-                  name="Configuration"
-                  parent="menu_root_lab"
-                  sequence="100"/>
-        <menuitem name="Testing Unit"
-          id="test_unit_conf"
-          parent="configuration_id"
-          action="act_open_test_unit_view"
-          sequence="20" />
+        <menuitem id="configuration_id" name="Configuration" parent="menu_root_lab" sequence="100"/>
+        <menuitem name="Testing Unit" id="test_unit_conf" parent="configuration_id" action="act_open_test_unit_view" sequence="20" />
     </data>
 </odoo>

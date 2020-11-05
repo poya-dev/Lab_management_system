@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- <record id="menu_partner_form" model="website.menu"> -->
+
+        <!-- <field name="name">Create customer</field> -->
+        <!-- ##here mention the name of the menu to appear. -->
+        <!-- <field name="url">/customer/form</field> -->
+        <!-- #here mention the url of the website to be redirected after clicking. This is a controller. -->
+        <!-- <field name="parent_id" ref="website.main_menu"/> -->
+        <!-- #here mention the parent id of the menu which we are inheriting. -->
+        <!-- <field name="sequence" type="int">22</field> -->
+        <!-- </record> -->
+
+
+
+        <record id="menu_patient_form" model="website.menu">
+            <field name="name"> create patient</field>
+            <field name="url">patient/form</field>
+            <field name="parent_id" ref="website.main_menu"/>
+
+            <field name="sequence" type="int">23</field>
+        </record>
+
+        <record id="menu_report_form" model="website.menu">
+            <field name="name"> Report</field>
+            <field name="url">print/print</field>
+            <field name="parent_id" ref="website.main_menu"/>
+
+            <field name="sequence" type="int">29</field>
+        </record>
+
+
+
+
+
+
+
+
+    </data>
+</odoo>
+
+
