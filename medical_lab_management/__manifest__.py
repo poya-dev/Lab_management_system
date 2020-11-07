@@ -8,7 +8,7 @@
     'description': """Manage Medical Lab General Operations, Odoo13, Odoo 13""",
 
     'category': 'Industries',
-    'depends': ['base', 'mail', 'account', 'website'],
+    'depends': ['base', 'mail', 'account', 'website', 'im_livechat', 'account', 'login_signup_captcha'],
     'data': [
         'security/lab_users.xml',
         'security/ir.model.access.csv',

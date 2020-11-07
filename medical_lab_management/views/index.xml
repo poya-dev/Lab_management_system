@@ -62,12 +62,14 @@
                                                     <t t-esc="patient.phone"/>
                                                 </td>
                                                 <!-- <td>
+                                                    <t t-esc="patient"/>
+                                                </td> -->
+                                                <!-- <td>
                                                     <t t-esc="patient.name"/>
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/print/print">
-                                                        <button type="button" class="btn btn-success">Print</button>
-
+                                                    <a t-attf-href="/print/print/{{patient.id}}" role="button" class="btn btn-success">
+                                                        Print
                                                     </a>
                                                 </td>
                                                 <td>
