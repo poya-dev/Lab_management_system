@@ -73,10 +73,10 @@
                 <form string="Appointment">
                     <header>
                         <button name="confirm_appointment" states="draft" string="Confirm" type="object" class="oe_highlight" />
-                        <button name="action_request" states="confirm" string="Request Lab" type="object" class="oe_highlight" />
-                        <button name="create_invoice" states="completed" string="Create Invoice" type="object" class="oe_highlight"/>
+                        <button name="action_request" states="to_invoice" string="Request Lab" type="object" class="oe_highlight" />
+                        <button name="create_invoice" states="completed,confirm" string="Create Invoice" type="object" class="oe_highlight"/>
                         <button name="cancel_appointment" states="draft,confirm" string="Cancelled" type="object"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,request_lab,completed,to_invoice,invoiced"
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,to_invoice,request_lab,completed,invoiced"
                                />
                     </header>
                     <sheet>
@@ -200,12 +200,12 @@
 
 
         <menuitem id="menu_lab_appointment" name="Appointments" sequence="11"
-        parent="menu_root_lab" groups="group_lab_management_user,group_lab_management_technician"/>
+        parent="menu_root_lab" groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
         <menuitem id="menu_lab_appointment_child" name="Appointments" sequence="10"
         parent="menu_lab_appointment" action="act_open_lab_appointment_view"
-                  groups="group_lab_management_user,group_lab_management_technician"/>
+                  groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
         <menuitem id="menu_lab_appointment_child_2" name=" Today's Appointments" sequence="11"
-                  groups="group_lab_management_user,group_lab_management_technician"
+                  groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"
                   parent="menu_lab_appointment" action="act_open_lab_appointment_view_2"/>
 
         <record id="view_lab_patient_form_inherit" model="ir.ui.view">
