@@ -35,7 +35,7 @@
         'security/ir.model.access.csv',
         'views/res_partner.xml',
         'views/lab_patient_view.xml',
-        'views/lab_cashier_view.xml',
+        'views/lab_cashier.xml',
         'views/test_unit_view.xml',
         'views/lab_test_type.xml',
         'views/lab_test_content_type.xml',
