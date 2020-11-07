@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="lab_cachier_menu"
+        name="Cashier"
+        parent="medical_lab_management.menu_root_lab"
+        sequence="11"
+        groups="group_lab_management_user,group_lab_management_technician,group_lab_cashier"
+    />
+
+        <menuitem
+        id="lab_cachier_menu_child"
+        name="Cashier"
+        parent="lab_cachier_menu"
+        sequence="12"
+        action="lab_invoice_action"
+        groups="group_lab_management_user,group_lab_management_technician,group_lab_cashier"
+        />
+
+</odoo>
