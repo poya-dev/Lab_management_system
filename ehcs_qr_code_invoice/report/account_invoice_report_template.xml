@@ -6,7 +6,6 @@
             <span></span>
         </xpath>
 
-
        <xpath expr="//t/t/t" position="after">
            <div style="float:right;height:100px;width:100px;">
                 <span t-field="o.qr_image" t-options='{"widget": "image"}' />
@@ -18,7 +17,7 @@
        <xpath expr="//div[@name='origin']" position="after">
              <div class="col-auto mw-100 mb-2" style="float:left;">
                 <strong>Patient Name:</strong>
-                <p class="m-0" t-field="o.patient"/>
+                <p class="m-0" t-field="o.partner_id"/>
             </div>
        </xpath>
 
