@@ -49,9 +49,9 @@ class Appointment(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirm', 'Confirmed'),
+        ('to_invoice', 'To Invoice'),
         ('request_lab', 'Lab Requested'),
         ('completed', 'Test Result'),
-        ('to_invoice', 'To Invoice'),
         ('invoiced', 'Done'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft',
@@ -127,7 +127,7 @@ class Appointment(models.Model):
                             # })
 
 
-                self.write({'state': 'invoiced'})
+                self.write({'state': 'to_invoice'})
                 view_id = self.env.ref('account.view_move_form').id
                 return {
                     'view_mode': 'form',
@@ -172,45 +172,6 @@ class Appointment(models.Model):
 
     def cancel_appointment(self):
         return self.write({'state': 'cancel'})
-
-    
-    def action_send_email(self):
-        
-        self.ensure_one()
-        ir_model_data = self.env['ir.model.data']
-        try:
-            template_id = ir_model_data.get_object_reference('medical_lab_management', 'email_template_for_patient')[1]
-        except ValueError:
-            template_id = False
-        try:
-            compose_form_id = ir_model_data.get_object_reference('mail', 'email_compose_message_wizard_form')[1]
-        except ValueError:
-            compose_form_id = False
-        
-        ctx = {
-            'default_model':'lab.appointment',
-            'default_res_id': self.ids[0],
-            'default_use_template': template_id,
-            'use_default_to': True,
-            'default_composition_mode': 'comment',
-            'mark_so_as_sent': True,
-            'force_email': True
-        }
-        # print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-        # print(ctx)
-        # print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-        return {
-            'type': 'ir.actions.act_window',
-            'view_mode': 'form',
-            'res_model': 'mail.compose.message',
-            'views': [(compose_form_id, 'form')],
-            'view_id': compose_form_id,
-            'target': 'new',
-            'context': ctx,
-        }
-
-
-
 
 
 class LabAppointmentLines(models.Model):

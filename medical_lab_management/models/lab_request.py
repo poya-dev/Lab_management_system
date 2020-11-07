@@ -86,7 +86,7 @@ class LabRequest(models.Model):
         for lab in self:
             if lab.lab_requestor:
                 curr_invoice = {
-                    'patient': lab.lab_requestor.patient.id,
+                    'partner_id': lab.lab_requestor.patient.id,
                     'account_id': lab.lab_requestor.patient.property_account_receivable_id.id,
                     'state': 'draft',
                     'type': 'out_invoice',
