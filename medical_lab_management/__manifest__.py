@@ -46,6 +46,7 @@
         'views/account_invoice.xml',
         'views/lab_createbatch.xml',
         'views/center_manager.xml',
+        'views/lab_mobile_team.xml',
         'report/report.xml',
         'report/lab_test_report.xml',
         'report/lab_patient_card.xml',

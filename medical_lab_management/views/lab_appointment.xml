@@ -106,6 +106,7 @@
                                 <field name="date" />
                                 <field name="appointment_date" />
                                 <field name="physician_id" domain="[('is_physician','=',True)]" context="{'search_default_is_physician':1, 'default_is_physician':1}"/>
+                                <field name="mobile_team"/>
                             </group>
                         </group>
                         <notebook colspan="4">
