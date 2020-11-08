@@ -1,0 +1,80 @@
+<odoo>  
+   <record model="ir.ui.view" id="view_openacad_session_kanban">
+        <field name="name">cemnter_manager_kanban</field>
+        <field name="model">summary</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_grey o_kanban_dashboard o_hr_recruitment_kanban">
+                <field name="unique_ident"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                            t-attf-class="oe_kanban_color_{{kanban_getcolor(record.no_of_visitor.raw_value)}}
+                                            oe_kanban_global_click oe_semantic_html_override
+                                            oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                        
+                            <div t-attf-class="oe_kanban_content">
+
+                                <t t-if="record.unique_ident.raw_value == '1'">
+
+
+                                    <div class="col-6">
+                                        <h3>Total no of Visitors</h3>
+                                        <field name="no_of_visitor"/> No of Visitors <br/>
+                                        <field name="no_of_visitor"/> Total Appointment <br/>
+                                        <field name="no_of_todays_appointment"/> Today Appointment
+                                    </div>
+                                <!-- title -->
+                                </t>
+
+
+
+                                <t t-if="record.unique_ident.raw_value == '2'">
+
+
+                                    <div class="col-6">
+                                        <h3>payments Collected</h3>
+                                        <field name="total_amount_of_payment"/> Total payment <br/>
+                                        <field name="total_amount_paid"/> paid amount <br/>
+                                        <field name="total_due_amount"/> Today Due ammount <br/>
+                                        <field name="total_discount"/> Today discount
+                                    </div>
+                                <!-- title -->
+                                </t>
+
+
+
+                                <t t-if="record.unique_ident.raw_value == '3'">
+
+
+                                    <div class="col-6">
+                                        <h3>Test Conducted</h3>
+                                        <field name="no_of_test"/> Total tests <br/>
+                                        <field name="no_of_completed_test"/> Tests completed<br/>
+                                        <field name="no_of_inprogress_test"/> Test Inprogress <br/>
+                                    </div>
+                                <!-- title -->
+                                </t>
+                            </div>
+                            
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+        </record>
+
+
+<record model="ir.actions.act_window" id="action_center_manager">
+	<field name="name">My Action</field>
+	<field name="res_model">summary</field>
+	<!-- <field name="view_type">form</field> -->
+	<field name="view_mode">kanban</field>
+	<!-- <field name="target">new</field> -->
+</record>
+
+
+
+<menuitem id="lab_center_manager_wizard" name="Summary" sequence="20"
+        parent="menu_root_lab" action="action_center_manager"
+        groups="group_lab_management_user,group_lab_management_technician,group_lab_center_manager"/>
+</odoo>

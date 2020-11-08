@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <menuitem id="menu_root_lab" name="Laboratory" sequence="40"
-                  groups="group_lab_management_user,group_lab_management_technician"/>
+                  groups="group_lab_management_user,group_lab_management_technician,group_lab_cashier,group_lab_nurse,group_lab_reception,group_lab_technician,group_lab_mobile_team"/>
         <record model="ir.ui.view" id="kanban_view_patient">
             <field name="name">Patient Kanban</field>
             <field name="model">lab.patient</field>
@@ -41,6 +41,7 @@
                     <field name="name" />
                     <field name="phone"/>
                     <field name="email"/>
+                    <field name="mobile_team_request"/>
                 </tree>
             </field>
         </record>
@@ -89,6 +90,7 @@
                                 <field name="date" invisible="1"/>
                                 <field name="blood_group"/>
                                 <field name="email"/>
+                                <field name="mobile_team_request"/>
                             </group>
                         </group>
                         <notebook>
@@ -148,11 +150,16 @@
             <field name="company_id" eval="False" />
         </record>
 
-        <menuitem id="menu_lab_patient" name="Patient" sequence="10"
-            parent="menu_root_lab" groups="group_lab_management_user,group_lab_management_technician"/>
+        <menuitem 
+            id="menu_lab_patient" 
+            name="Patient" 
+            sequence="10"
+            parent="menu_root_lab" 
+            groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"
+        />
         <menuitem id="menu_lab_patient_child" name="Patient" sequence="10"
                   parent="menu_lab_patient" action="act_open_lab_patient_view"
-                  groups="group_lab_management_user,group_lab_management_technician"/>
+                  groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
 
 
     </data>
