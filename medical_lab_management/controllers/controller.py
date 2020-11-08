@@ -1,5 +1,6 @@
 from odoo import http
 from odoo.http import request
+import base64
 # from odoo import pdfhttpheaders
 # from odoo import pdf
 
@@ -74,11 +75,18 @@ class labpatientForm(http.Controller):
 class ViewPatient(http.Controller):
     @http.route(['/record/view'], type='http',  auth="user", website=True)
     def index(self, **kw):
-        patient = http.request.env['lab.patient'].sudo()
-        print("****************************************Hello ***********************************")
-        return http.request.render('medical_lab_management.index', {
-            'patient': patient.search([('create_uid', '=', request.uid)])
 
+        lab_patient = http.request.env['lab.patient'].sudo()
+        print("****************************************Hello ***********************************")
+
+
+        patient_id = lab_patient.search([('create_uid', '=', request.uid)]).patient.id
+        lab_request = http.request.env['lab.request'].sudo()
+        pdf = lab_request.search([('lab_requestor.patient', '=', patient_id)])
+
+
+        return http.request.render('medical_lab_management.index', {
+            'lab_result': pdf,
         })
 
 

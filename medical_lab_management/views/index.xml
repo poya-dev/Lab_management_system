@@ -4,12 +4,51 @@
             <t t-call="website.layout">
                 <title>practice</title>
                 <field name="arch" type="xml">
+                    <table>
+                        <tr>
+<!--                             <th>ID</th>
+                            <th>Name</th>
+                            <th>Lab Requestor</th>
+ -->                            <th>Lab Result</th>
+                            <!-- <th>create date</th> -->
+                        </tr>
+                        <t t-foreach="lab_result" t-as="lr">    
+                        <tr>
+<!--                             <td>
+                                <t t-esc="lr.id" />
+                            </td>
+                            <td>
+                                <t t-esc="lr.name"/>
+                            </td>
+                            <td>
+                                <t t-esc="lr.lab_requestor.name"/>
+                            </td>
+ -->                            <td>
 
-                    <form action="/record/view">
+                                <span align="center">
+                                    <a t-att-href="'data:application/pdf;base64,%s' % to_text(lr.lab_result_pdf)"
+                                        t-att-download="lr.name">
+                                        <button type="button" class="btn btn-warning">Download</button>
+                                    </a>
+                                </span>
+
+                            </td>
+<!--                             <td>
+                                <t t-esc="lr.create_date" />
+                            </td>
+ -->                        </tr>
+                        </t>
+                    </table>
+
+
+
+
+
+                    <!-- <form action="/record/view">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-
+                                    <th scope="col">ID</th>
                                     <th scope="col">Patient Name</th>
                                     <th scope="col">Patient ID</th>
                                     <th scope="col">Age</th>
@@ -28,10 +67,11 @@
                                         <t t-esc="n"/>
                                         <p>
                                             <tr>
-                                                <!-- <th scope="row"></th> -->
+                                                   <th scope="row"></th> 
 
-
-
+                                                <td>
+                                                    <t t-esc="patient.id"/>
+                                                </td>
                                                 <td>
                                                     <t t-esc="patient.patient.name"/>
                                                 </td>
@@ -61,9 +101,9 @@
                                                 <td>
                                                     <t t-esc="patient.phone"/>
                                                 </td>
-                                                <!-- <td>
+                                                <td>
                                                     <t t-esc="patient.name"/>
-                                                </td> -->
+                                                </td> 
                                                 <td>
                                                     <a t-attf-href="/print/print">
                                                         <button type="button" class="btn btn-success">Print</button>
@@ -82,7 +122,7 @@
                             </tbody>
                         </table>
 
-                    </form>
+                     </form> -->
                 </field>
             </t>
         </template>
