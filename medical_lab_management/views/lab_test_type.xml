@@ -79,7 +79,7 @@
 
         <menuitem id="menu_lab_test" name="Lab Test" sequence="1"
                   parent="configuration_id" action="act_open_lab_test_view"
-                  groups="group_lab_management_user,group_lab_management_technician"/>
+                  groups="group_lab_management_user,group_lab_management_technician,group_lab_technician"/>
 
         <record id="view_lab_test_attribute_form" model="ir.ui.view">
         <field name="name">lab.test.attribute.form</field>
