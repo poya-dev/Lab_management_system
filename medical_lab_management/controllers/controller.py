@@ -1,17 +1,19 @@
 from odoo import http
 from odoo.http import request
-
+import base64
 
 class labpatientForm(http.Controller):
     # mention class name
-    @http.route(['/patient/form'], type='http', auth="user", website=True)
-    def partner_form(self, **post):
-
+    @http.route(['/book-appointment/form'], type='http', auth="user", website=True)
+    # mention a url for redirection.
+    # define the type of controller which in this case is ‘http’.
+    # mention the authentication to be either public or user.
+    def index(self, **post):
         return request.render("medical_lab_management.tmp_patient_form", {})
 
     @http.route(['/patient/form/submit'], type='http', auth="user", website=True)
     #next controller with url for submitting data from the form#
-    def customer_form_submit(self, **post):
+    def save_test_appointment(self, **post):
 
         partner_id = request.env['res.partner'].sudo().create({
             'name': post.get('patient')
@@ -33,13 +35,20 @@ class labpatientForm(http.Controller):
         }
         return request.render("medical_lab_management.tmp_patient_form_success", vals)
 
+    @http.route(['/view-lab-result'], type='http',  auth="user", website=True)
+    def lab_result(self, **kw):
+        print(request.uid)
+        lab_patient = http.request.env['lab.patient'].sudo()
+        patient_ids = lab_patient.search([('create_uid', '=', request.uid)]).patient.ids
+        lab_request = http.request.env['lab.request'].sudo()
 
-class ViewPatient(http.Controller):
-    @http.route(['/record/view'], type='http',  auth="user", website=True)
-    def index(self, **kw):
-        patient = http.request.env['lab.patient'].sudo()
-        print("****************************************Hello ***********************************")
+        lab_results = []
+
+        for pid in patient_ids:
+            pdf = lab_request.search([('lab_requestor.patient', '=', pid)])
+            lab_results.append(pdf)        
+
+        print(lab_results)
+
         return http.request.render('medical_lab_management.index', {
-            'patient': patient.search([('create_uid', '=', request.uid)])
-
-        })
+            'lab_result': lab_results,

@@ -10,7 +10,12 @@ from . import lab_test_content_type
 from . import lab_appointment
 from . import lab_request
 from . import account_invoice
+<<<<<<< HEAD
+from . import batch
+from . import summary
+=======
 from . import models
 from . import batch
 from . import summary
 from . import add_mobile_team
+>>>>>>> e5f9cb4f01193733a6f3d31ec93ef7afccf946f9
