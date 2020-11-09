@@ -19,7 +19,6 @@ access_lab_appointment_line_technician,lab.appointment.lines,model_lab_appointme
 access_lab_test_attribute_technician,lab.test.attribute,model_lab_test_attribute,group_lab_management_technician,1,1,1,1
 
 
-
 access_lab_request_nurses,medical_lab_management.lab.request,model_lab_request,medical_lab_management.group_lab_nurse,1,1,1,1
 access_lab_appointment_nurses,medical_lab_management.lab.appointment,model_lab_appointment,medical_lab_management.group_lab_nurse,1,1,1,0
 access_lab_appointment_lines_nurses,medical_lab_management.lab.appointment.lines,model_lab_appointment_lines,medical_lab_management.group_lab_nurse,1,1,1,0
@@ -63,4 +62,3 @@ access_lab_mobileteam_mobile_team,medical_lab_management.lab.mobileteam,model_la
 access_lab_appointment_mobile_team,medical_lab_management.lab.appointment,model_lab_appointment,medical_lab_management.group_lab_mobile_team,1,1,1,0
 access_lab_appointment_lines_mobile_team,medical_lab_management.lab.appointment.lines,model_lab_appointment_lines,medical_lab_management.group_lab_mobile_team,1,1,1,0
 access_lab_patient_mobile_team,medical_lab_management.lab.patient,model_lab_patient,medical_lab_management.group_lab_mobile_team,1,1,1,0
-

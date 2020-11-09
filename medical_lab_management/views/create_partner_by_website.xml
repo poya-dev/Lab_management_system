@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="menu_patient_form" model="website.menu">
+            <field name="name"> create patient</field>
+            <field name="url">patient/form</field>
+            <field name="parent_id" ref="website.main_menu"/>
+
+            <field name="sequence" type="int">23</field>
+        </record>
+
+        <record id="menu_view_form" model="website.menu">
+            <field name="name">View Record</field>
+            <field name="url">/record/viewt</field>
+            <field name="parent_id" ref="website.main_menu"/>
+
+            <field name="sequence" type="int">29</field>
+        </record>
+
+    </data>
+</odoo>
+
+
