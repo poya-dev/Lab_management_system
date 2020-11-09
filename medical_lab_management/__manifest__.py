@@ -40,7 +40,7 @@
         'views/lab_test_type.xml',
         'views/lab_test_content_type.xml',
         'views/physician_specialty.xml',
-        'views/physician_details.xml',
+        # 'views/physician_details.xml',
         'views/lab_request.xml',
         'views/lab_appointment.xml',
         'views/account_invoice.xml',
