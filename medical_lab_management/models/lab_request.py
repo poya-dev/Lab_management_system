@@ -39,6 +39,8 @@ class LabRequest(models.Model):
                                     help='Patient Name')
     test_request = fields.Many2one('lab.test', string='Test')
     lab_requesting_date = fields.Datetime(string='Requested Date')
+    lab_result_pdf = fields.Binary()
+    
     comment = fields.Text('Comment')
     request_line = fields.One2many('lab.test.attribute', 'test_request_reverse', string="Test Lines")
     
@@ -94,35 +96,6 @@ class LabRequest(models.Model):
         encoded_pdf = base64.b64encode(pdf)
         self.lab_result_pdf = encoded_pdf
 
-   
-        
-        # return pdf
-        # print(pdf)
-        
-        # print(pdf)
-        print('--------------------END-------------------------')
-        # return result
-    
-    def send_lab_test(self):
-        print('===========================================================')
- 
-        pdf = self.env.ref('medical_lab_management.print_lab_test').render_qweb_pdf([])
-        print(pdf)
-        # document = self.env.ref['medical_lab_management.print_lab_test'].sudo().render_qweb_pdf([])
-        # report_sudo = self.env['ir.actions.report']._get_report_from_name('medical_lab_management.report_patient_labtest')
-        # # pdf_content = getattr(report_sudo, 'render_qweb_pdf')([self.id], data={'report_type': 'pdf'})[0]
-        # print(report_sudo.id)
-        # print(report_sudo.name)
-        # print(report_sudo.report_type)
-        # print(report_sudo.report_name)
-        # print(report_sudo.report_file)
-        # print(report_sudo.attachment)
-        # print(report_sudo.attachment_use)
-        
-        # # print(pdf_content)
-        print('===========================================================')
-        
-
 
 
     def lab_invoice_create(self):
@@ -131,7 +104,7 @@ class LabRequest(models.Model):
         for lab in self:
             if lab.lab_requestor:
                 curr_invoice = {
-                    'patient': lab.lab_requestor.patient.id,
+                    'partner_id': lab.lab_requestor.patient.id,
                     'account_id': lab.lab_requestor.patient.property_account_receivable_id.id,
                     'state': 'draft',
                     'type': 'out_invoice',
