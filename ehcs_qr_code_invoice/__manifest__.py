@@ -15,7 +15,8 @@
     'data': [
         'report/account_invoice_report_template.xml',
         'views/qr_code_invoice_view.xml',
-        'views/qr_code_patient_view.xml'
+        'views/qr_code_patient_view.xml',
+        'report/barcode_template.xml',
     ],
     'images': [
         'static/description/banner.png',

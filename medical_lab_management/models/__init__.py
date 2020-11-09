@@ -11,3 +11,6 @@ from . import lab_appointment
 from . import lab_request
 from . import account_invoice
 from . import models
+from . import batch
+from . import summary
+from . import add_mobile_team

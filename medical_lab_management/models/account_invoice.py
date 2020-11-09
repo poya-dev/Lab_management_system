@@ -33,5 +33,5 @@ class LabRequestInvoices(models.Model):
         res = super(LabRequestInvoices, self).action_invoice_paid()
         lab_app_obj = self.env['lab.appointment'].search([('id', '=', self.lab_request.id)])
         for obj in lab_app_obj:
-            obj.write({'state': 'invoiced'})
+            obj.write({'state': 'to_invoice'})
         return res
