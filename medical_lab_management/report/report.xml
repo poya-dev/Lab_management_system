@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="print_lab_test"  model="ir.actions.report">
+        <!-- <record id="print_lab_test"  model="ir.actions.report">
             <field name="name">Lab Test Result</field>
             <field name="model">lab.request</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">medical_lab_management.report_patient_labtest</field>
             <field name="report_file">medical_lab_management.report_patient_labtest</field>
-        </record>
+            <field name="attachment"></field>
+        </record> -->
 
+
+
+        <report
+            string="Lab Test Result"
+            id="print_lab_test"
+            model="lab.request"
+            report_type="qweb-pdf"
+            name="medical_lab_management.report_patient_labtest"
+            file="medical_lab_management.report_patient_labtest"
+        />
 
 <!--        <record id="action_report_patient_label"  model="ir.actions.report">-->
 <!--            <field name="name">Patient Card</field>-->

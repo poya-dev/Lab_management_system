@@ -75,7 +75,7 @@ class LabPatient(models.Model):
         
         message_body = "Dear " + result.patient.name + "," + "<br>You have successfully registered as Patient " \
                                         + "<br>Your Patient ID : <bold>" + result.name + "<bold><br>Date : " + str(result.date) + \
-                '\bPlease wait until we confirm you<br>and will send you email<br><br>Thank you'
+                '\bYou will soon recieve your Appointment confirmation Email.<br><br>Thank you'
 
         template_obj = self.env['mail.mail']
         template_data = {

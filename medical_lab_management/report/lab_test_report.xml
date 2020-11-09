@@ -3,8 +3,8 @@
     <data>
         <template id="report_patient_labtest">
               <t t-call="web.html_container">
-                <t t-call="web.external_layout">
                 <t t-foreach="docs" t-as="o">
+                <div class="article"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
                     <div class="page">
                         <br />
                         <h3 style="text-decoration:underline;text-align:center;"><b>Lab Test Report</b></h3>
@@ -40,9 +40,9 @@
                          <br/>
                          <br/>
                     </div>
+                </div>
                     <p style="page-break-after:always"></p>
-                </t>
-           </t>
+                 </t>
               </t>
         </template>
     </data>

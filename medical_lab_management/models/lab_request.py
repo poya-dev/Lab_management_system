@@ -23,6 +23,7 @@
 import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+import base64
 
 
 class LabRequest(models.Model):
@@ -40,6 +41,10 @@ class LabRequest(models.Model):
     lab_requesting_date = fields.Datetime(string='Requested Date')
     comment = fields.Text('Comment')
     request_line = fields.One2many('lab.test.attribute', 'test_request_reverse', string="Test Lines")
+    
+    lab_result_pdf = fields.Binary()
+    
+    
     state = fields.Selection([
         ('draft', 'Draft'),
         ('sample_collection', 'Sample Collected'),
@@ -77,8 +82,48 @@ class LabRequest(models.Model):
             app_obj.write({'state': 'completed'})
         return self.write({'state': 'completed'})
 
+
+
     def print_lab_test(self):
-        return self.env.ref('medical_lab_management.print_lab_test').report_action(self)
+        print('------------------START---------------------')
+        # print(self)
+        # result = self.env.ref('medical_lab_management.print_lab_test').report_action(self)
+        # pdf = self.env.ref('medical_lab_management.print_lab_test')
+        
+        pdf = self.env.ref('medical_lab_management.print_lab_test')._render_qweb_pdf(self.id)[0]
+        encoded_pdf = base64.b64encode(pdf)
+        self.lab_result_pdf = encoded_pdf
+
+   
+        
+        # return pdf
+        # print(pdf)
+        
+        # print(pdf)
+        print('--------------------END-------------------------')
+        # return result
+    
+    def send_lab_test(self):
+        print('===========================================================')
+ 
+        pdf = self.env.ref('medical_lab_management.print_lab_test').render_qweb_pdf([])
+        print(pdf)
+        # document = self.env.ref['medical_lab_management.print_lab_test'].sudo().render_qweb_pdf([])
+        # report_sudo = self.env['ir.actions.report']._get_report_from_name('medical_lab_management.report_patient_labtest')
+        # # pdf_content = getattr(report_sudo, 'render_qweb_pdf')([self.id], data={'report_type': 'pdf'})[0]
+        # print(report_sudo.id)
+        # print(report_sudo.name)
+        # print(report_sudo.report_type)
+        # print(report_sudo.report_name)
+        # print(report_sudo.report_file)
+        # print(report_sudo.attachment)
+        # print(report_sudo.attachment_use)
+        
+        # # print(pdf_content)
+        print('===========================================================')
+        
+
+
 
     def lab_invoice_create(self):
         invoice_obj = self.env["account.move"]
