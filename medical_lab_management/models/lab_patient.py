@@ -56,6 +56,15 @@ class LabPatient(models.Model):
                            default=lambda s: fields.Datetime.now())
     phone = fields.Char(string="Phone", )
     email = fields.Char(string="Email",)
+    date = fields.Datetime(string='Date Requested', default=lambda s: fields.Datetime.now(), invisible=True)
+    phone = fields.Char(string="Phone", required=True)
+    email = fields.Char(string="Email", required=True)
+    mobile_team_request = fields.Selection([('y','Yes'), ('n','No')], 'Mobile Team Request', default='n')
+    no_of_visitors = fields.Integer(string='visitors')
+
+    def count_visitor(self):
+        test_obj = self.env["lab.patient"].search([])
+        no_of_count = len(test_obj)
 
     def compute_age(self):
         for data in self:

@@ -37,7 +37,6 @@ class labpatientForm(http.Controller):
 
     @http.route(['/view-lab-result'], type='http',  auth="user", website=True)
     def lab_result(self, **kw):
-        print('=-------------===================================================')
         print(request.uid)
         lab_patient = http.request.env['lab.patient'].sudo()
         patient_ids = lab_patient.search([('create_uid', '=', request.uid)]).patient.ids
@@ -53,4 +52,3 @@ class labpatientForm(http.Controller):
 
         return http.request.render('medical_lab_management.index', {
             'lab_result': lab_results,
-        })

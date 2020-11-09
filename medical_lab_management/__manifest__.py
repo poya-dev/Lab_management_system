@@ -8,7 +8,7 @@
     'description': """Manage Medical Lab General Operations, Odoo13, Odoo 13""",
 
     'category': 'Industries',
-    'depends': ['base', 'mail', 'account', 'website'],
+    'depends': ['base', 'mail', 'account', 'website', 'im_livechat', 'account', 'login_signup_captcha', 'website_mail_channel', 'website_blog'],
     'data': [
         'security/lab_users.xml',
         'security/ir.model.access.csv',
@@ -19,12 +19,13 @@
         'views/lab_test_type.xml',
         'views/lab_test_content_type.xml',
         'views/physician_specialty.xml',
-        'views/physician_details.xml',
+        # 'views/physician_details.xml',
         'views/lab_request.xml',
         'views/lab_appointment.xml',
         'views/account_invoice.xml',
         'views/lab_createbatch.xml',
         'views/center_manager.xml',
+        'views/lab_mobile_team.xml',
         'report/report.xml',
         'report/lab_test_report.xml',
         'report/lab_patient_card.xml',

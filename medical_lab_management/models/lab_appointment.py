@@ -46,12 +46,13 @@ class Appointment(models.Model):
 
     request_count = fields.Integer(compute="_compute_state", string='# of Requests', copy=False, default=0)
     inv_count = fields.Integer(compute="_compute_state", string='# of Invoices', copy=False, default=0)
+    mobile_team = fields.Char(string='Mobile Team Request')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirm', 'Confirmed'),
+        ('to_invoice', 'To Invoice'),
         ('request_lab', 'Lab Requested'),
         ('completed', 'Test Result'),
-        ('to_invoice', 'To Invoice'),
         ('invoiced', 'Done'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft',
@@ -127,7 +128,7 @@ class Appointment(models.Model):
                             # })
 
 
-                self.write({'state': 'invoiced'})
+                self.write({'state': 'to_invoice'})
                 view_id = self.env.ref('account.view_move_form').id
                 return {
                     'view_mode': 'form',
@@ -143,6 +144,7 @@ class Appointment(models.Model):
             for line in self.appointment_lines:
                 data = self.env['lab.test'].search([('lab_test', '=', line.lab_test.lab_test)])
                 self.env['lab.request'].create({'lab_request_id': self.name,
+                                                'mobile_team': self.mobile_team,
                                                 'app_id': self.id,
                                                 'lab_requestor': self.patient_id.id,
                                                 'lab_requesting_date': self.appointment_date,
@@ -174,6 +176,21 @@ class Appointment(models.Model):
         return self.write({'state': 'cancel'})
 
 
+    @api.onchange('patient_id')
+    def _update_mobileteam(self):
+        print('------------------------TEST-----------------')
+        pname = self.patient_id.id
+        mobilteam = ""
+        test_obj = self.env["lab.patient"].search([])
+        act_domain = [
+            ("id", "=", pname),
+        ]
+        records = test_obj.search(act_domain)
+        valueee = records.mobile_team_request
+
+        self.mobile_team = valueee
+        # print('RECORD: ', records.mobile_team_request)
+ 
 class LabAppointmentLines(models.Model):
     _name = 'lab.appointment.lines'
 
@@ -186,6 +203,9 @@ class LabAppointmentLines(models.Model):
     def cost_update(self):
         if self.lab_test:
             self.cost = self.lab_test.test_cost
+
+    
+    
 
 
 class LabPatientInherit(models.Model):

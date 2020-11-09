@@ -1,9 +1,9 @@
 <odoo>  
    <record model="ir.ui.view" id="view_openacad_session_kanban">
         <field name="name">cemnter_manager_kanban</field>
-        <field name="model">lab.summary</field>
+        <field name="model">summary</field>
         <field name="arch" type="xml">
-            <kanban class="oe_background_grey o_kanban_dashboard o_hr_recruitment_kanban">
+            <kanban class="oe_background_grey o_kanban_dashboard o_hr_recruitment_kanban" create="0">
                 <field name="unique_ident"/>
                 <templates>
                     <t t-name="kanban-box">
@@ -65,14 +65,16 @@
 
 
 <record model="ir.actions.act_window" id="action_center_manager">
-	<field name="name">My Action</field>
-	<field name="res_model">lab.summary</field>
+	<field name="name">Laboratory Summary</field>
+	<field name="res_model">summary</field>
+	<!-- <field name="view_type">form</field> -->
 	<field name="view_mode">kanban</field>
+	<!-- <field name="target">new</field> -->
 </record>
 
 
 
-<menuitem id="lab_center_manager_wizard" name="Summary" sequence="20"
+<menuitem id="lab_center_manager_wizard" name="Lab Summary" sequence="20"
         parent="menu_root_lab" action="action_center_manager"
         groups="group_lab_management_user,group_lab_management_technician,group_lab_center_manager"/>
 </odoo>
