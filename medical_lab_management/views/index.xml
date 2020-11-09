@@ -2,130 +2,46 @@
     <data>
         <template id="index">
             <t t-call="website.layout">
-                <title>practice</title>
                 <field name="arch" type="xml">
-                    <table>
-                        <tr>
-<!--                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Lab Requestor</th>
- -->                            <th>Lab Result</th>
-                            <!-- <th>create date</th> -->
-                        </tr>
-                        <t t-foreach="lab_result" t-as="lr">    
-                        <tr>
-<!--                             <td>
-                                <t t-esc="lr.id" />
-                            </td>
-                            <td>
-                                <t t-esc="lr.name"/>
-                            </td>
-                            <td>
-                                <t t-esc="lr.lab_requestor.name"/>
-                            </td>
- -->                            <td>
-
-                                <span align="center">
-                                    <a t-att-href="'data:application/pdf;base64,%s' % to_text(lr.lab_result_pdf)"
-                                        t-att-download="lr.name">
-                                        <button type="button" class="btn btn-warning">Download</button>
-                                    </a>
-                                </span>
-
-                            </td>
-<!--                             <td>
-                                <t t-esc="lr.create_date" />
-                            </td>
- -->                        </tr>
-                        </t>
-                    </table>
-
-
-
-
-
-                    <!-- <form action="/record/view">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Patient Name</th>
-                                    <th scope="col">Patient ID</th>
-                                    <th scope="col">Age</th>
-                                    <th scope="col">Visa Info</th>
-                                    <th scope="col"> Blood Group</th>
-                                    <th scope="col"> Gender</th>
-                                    <th scope="col">Phone</th>
-
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <t t-foreach="patient" t-as="patient">
-                                    <p>
-                                        <t t-esc="n"/>
-                                        <p>
-                                            <tr>
-                                                   <th scope="row"></th> 
-
-                                                <td>
-                                                    <t t-esc="patient.id"/>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="patient.patient.name"/>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="patient.name"/>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="patient.age"/>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="patient.visa_info"/>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="patient.blood_group"/>
-                                                </td>
-                                                <td>
-                                                    <t t-if="patient.gender == 'm'">
-                                                        Male
-                                                    </t>
-                                                    <t t-if="patient.gender == 'f'">
-                                                        Female
-                                                    </t>
-                                                    <t t-if="patient.gender == 'ot'">
-                                                        Other
-                                                    </t>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="patient.phone"/>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="patient.name"/>
-                                                </td> 
-                                                <td>
-                                                    <a t-attf-href="/print/print">
-                                                        <button type="button" class="btn btn-success">Print</button>
-
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning">Download</button>
-                                                </td>
-
-
-                                            </tr>
-                                        </p>
-                                    </p>
-                                </t>
-                            </tbody>
+                    <div class="container" style="margin-top:100;margin-bottom:50;">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>PID</th>
+                                <th>Lab Requestor</th>
+                                <th>Lab Result</th>
+                                <th>Test Date</th>
+                            </tr>
+                            <t t-foreach="lab_result" t-as="lr">    
+                            <tr>
+                                <td t-if="lr.id">
+                                    <t t-esc="lr.id" />
+                                </td>
+                                <td t-if="lr.lab_requestor.name">
+                                    <t t-esc="lr.lab_requestor.name"/>
+                                </td>
+                                <td t-if="lr.lab_requestor.patient.name">
+                                    <t t-esc="lr.lab_requestor.patient.name"/>
+                                </td>
+                                <td>
+                                    <t t-if="lr.lab_result_pdf">
+                                    <span align="center">
+                                        <a t-att-href="'data:application/pdf;base64,%s' % to_text(lr.lab_result_pdf)"
+                                            t-att-download="lr.name">
+                                            <button type="button" class="btn btn-success btn-sm">Download</button>
+                                        </a>
+                                    </span>
+                                    </t>
+                                </td>
+                                <td t-if="lr.write_date">
+                                    <t t-esc="lr.write_date.strftime('%d/%m/%Y')" />
+                                </td>
+                            </tr>
+                            </t>
                         </table>
-
-                     </form> -->
+                    </div>
                 </field>
             </t>
         </template>
-
     </data>
 </odoo>

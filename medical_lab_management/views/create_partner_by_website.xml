@@ -15,16 +15,15 @@
 
 
         <record id="menu_patient_form" model="website.menu">
-            <field name="name"> create patient</field>
-            <field name="url">patient/form</field>
+            <field name="name">Book an Apointment</field>
+            <field name="url">book-appointment/form</field>
             <field name="parent_id" ref="website.main_menu"/>
-
             <field name="sequence" type="int">23</field>
         </record>
 
         <record id="menu_report_form" model="website.menu">
-            <field name="name"> Report</field>
-            <field name="url">print/print</field>
+            <field name="name">View My Test Result</field>
+            <field name="url">view-lab-result</field>
             <field name="parent_id" ref="website.main_menu"/>
 
             <field name="sequence" type="int">29</field>
