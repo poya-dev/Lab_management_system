@@ -16,7 +16,7 @@
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click">
                                 <div class="o_kanban_image">
-                                    <img t-att-src="kanban_image('lab.patient', 'patient_image', record.id.value)"/>
+                                    <img t-att-src="kanban_image('lab.patient', 'patient_image', record.id.value)" alt="image"/>
                                 </div>
                                 <div class="oe_kanban_details">
                                     <strong>
@@ -146,10 +146,7 @@
             <field name="company_id" eval="False" />
         </record>
 
-<<<<<<< HEAD
-        <menuitem id="menu_lab_patient" name="Patient" sequence="10" parent="menu_root_lab" groups="group_lab_management_user,group_lab_management_technician"/>
-        <menuitem id="menu_lab_patient_child" name="Patient" sequence="10" parent="menu_lab_patient" action="act_open_lab_patient_view" groups="group_lab_management_user,group_lab_management_technician"/>
-=======
+
         <menuitem 
             id="menu_lab_patient" 
             name="Patient" 
@@ -160,7 +157,6 @@
         <menuitem id="menu_lab_patient_child" name="Patient" sequence="10"
                   parent="menu_lab_patient" action="act_open_lab_patient_view"
                   groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
->>>>>>> 4a827b34d2f43a586ee44ad803331ce604d8d4c8
 
 
     </data>

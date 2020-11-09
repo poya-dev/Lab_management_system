@@ -40,7 +40,7 @@ class LabRequest(models.Model):
     test_request = fields.Many2one('lab.test', string='Test')
     lab_requesting_date = fields.Datetime(string='Requested Date')
     lab_result_pdf = fields.Binary()
-    
+    mobile_team = fields.Char(string='Mobile Team Request')
     comment = fields.Text('Comment')
     request_line = fields.One2many('lab.test.attribute', 'test_request_reverse', string="Test Lines")
     
@@ -86,12 +86,7 @@ class LabRequest(models.Model):
 
 
 
-    def print_lab_test(self):
-        print('------------------START---------------------')
-        # print(self)
-        # result = self.env.ref('medical_lab_management.print_lab_test').report_action(self)
-        # pdf = self.env.ref('medical_lab_management.print_lab_test')
-        
+    def print_and_send_lab_result_to_user(self):
         pdf = self.env.ref('medical_lab_management.print_lab_test')._render_qweb_pdf(self.id)[0]
         encoded_pdf = base64.b64encode(pdf)
         self.lab_result_pdf = encoded_pdf

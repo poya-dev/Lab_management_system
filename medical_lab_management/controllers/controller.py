@@ -12,9 +12,8 @@ class labpatientForm(http.Controller):
         return request.render("medical_lab_management.tmp_patient_form", {})
 
     @http.route(['/patient/form/submit'], type='http', auth="user", website=True)
-    #next controller with url for submitting data from the form#
+    # next controller with url for submitting data from the form#
     def save_test_appointment(self, **post):
-
         partner_id = request.env['res.partner'].sudo().create({
             'name': post.get('patient')
         })
@@ -37,7 +36,6 @@ class labpatientForm(http.Controller):
 
     @http.route(['/view-lab-result'], type='http',  auth="user", website=True)
     def lab_result(self, **kw):
-        print(request.uid)
         lab_patient = http.request.env['lab.patient'].sudo()
         patient_ids = lab_patient.search([('create_uid', '=', request.uid)]).patient.ids
         lab_request = http.request.env['lab.request'].sudo()
@@ -47,8 +45,12 @@ class labpatientForm(http.Controller):
         for pid in patient_ids:
             pdf = lab_request.search([('lab_requestor.patient', '=', pid)])
             lab_results.append(pdf)        
-
-        print(lab_results)
-
+            
         return http.request.render('medical_lab_management.index', {
             'lab_result': lab_results,
+
+        })
+
+
+
+
