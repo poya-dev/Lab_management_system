@@ -36,6 +36,7 @@ class LabRequest(models.Model):
     app_id = fields.Many2one('lab.appointment', string='Appointment')
     lab_requestor = fields.Many2one('lab.patient', string='Patient', required=True, select=True,
                                     help='Patient Name')
+    mobile_team = fields.Char(string='Mobile Team Request')
     test_request = fields.Many2one('lab.test', string='Test')
     lab_requesting_date = fields.Datetime(string='Requested Date')
     comment = fields.Text('Comment')
