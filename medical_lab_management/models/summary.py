@@ -22,6 +22,10 @@ class Summary(models.Model):
     def count_visitor(self):
         test_obj = self.env["lab.patient"].search([])
         no_of_count = len(test_obj)
+        
+        print('--------------------------------------------------')
+        print(no_of_count)
+        
         self.no_of_visitor = no_of_count
 
     @api.depends('no_of_appointment')

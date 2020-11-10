@@ -11,12 +11,8 @@
                             t-attf-class="oe_kanban_color_{{kanban_getcolor(record.no_of_visitor.raw_value)}}
                                             oe_kanban_global_click oe_semantic_html_override
                                             oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
-                        
                             <div t-attf-class="oe_kanban_content">
-
                                 <t t-if="record.unique_ident.raw_value == '1'">
-
-
                                     <div class="col-6">
                                         <h3>Total no of Visitors</h3>
                                         <field name="no_of_visitor"/> No of Visitors <br/>
@@ -25,12 +21,7 @@
                                     </div>
                                 <!-- title -->
                                 </t>
-
-
-
                                 <t t-if="record.unique_ident.raw_value == '2'">
-
-
                                     <div class="col-6">
                                         <h3>payments Collected</h3>
                                         <field name="total_amount_of_payment"/> Total payment <br/>
@@ -40,12 +31,7 @@
                                     </div>
                                 <!-- title -->
                                 </t>
-
-
-
                                 <t t-if="record.unique_ident.raw_value == '3'">
-
-
                                     <div class="col-6">
                                         <h3>Test Conducted</h3>
                                         <field name="no_of_test"/> Total tests <br/>
@@ -54,8 +40,7 @@
                                     </div>
                                 <!-- title -->
                                 </t>
-                            </div>
-                            
+                            </div>            
                         </div>
                     </t>
                 </templates>
