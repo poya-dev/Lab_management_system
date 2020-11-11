@@ -85,12 +85,10 @@ class LabRequest(models.Model):
         return self.write({'state': 'completed'})
 
 
-
     def print_and_send_lab_result_to_user(self):
         pdf = self.env.ref('medical_lab_management.print_lab_test')._render_qweb_pdf(self.id)[0]
         encoded_pdf = base64.b64encode(pdf)
         self.lab_result_pdf = encoded_pdf
-
 
 
     def lab_invoice_create(self):

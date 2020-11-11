@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+
         <template id="report_patient_label">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
@@ -13,28 +14,26 @@
                             <center>
                             <br/>
                                 <div class="col-xs-8" style="margin:auto">
-                                    <table class="table table-condensed" style="border: 3px solid black !important;">
+                                    <table class="table table-condensed" style="border: 2px solid black !important;width:500px;">
                                         <tr>
                                             <td width="40%">
                                                 <p style="text-align:center;padding-top:10px;">
                                                     <img t-if="not o.patient_image" t-att-src="'/web/static/src/img/placeholder.png'" height="120" border="1" width="120"/>
                                                     <img t-if="o.patient_image" t-att-src="'data:image/png;base64,%s' %o.patient_image" height="120" border="1" width="120"/>
                                                 </p>
-                                                <p style="text-align:center;">
-                                                    <strong><span t-field="o.patient.name"/></strong>
-                                                </p>
                                             </td>
+                                             
                                             <td width="60%">
                                                 <table>
                                                     <tr>
                                                         <td>
-                                                            <p style="text-align:right;"><strong>Patient ID :</strong></p>
+                                                            <p style="text-align:right;"><strong>Patient :</strong></p>
                                                             <p style="text-align:right;"><strong>Sex :</strong></p>
                                                             <p style="text-align:right;"><strong>Age :</strong></p>
                                                         </td>
-                                                        <td>
-                                                            <p style="text-align:left;"  t-field="o.name"/>
-                                                            <t t-if="o.gender=='m'">
+                                                        <td>                       
+                                                            <p t-field="o.patient.name" style="text-align:left;">Male</p>
+                                                            <t t-if="o.gender=='m'">                                                            
                                                                 <p style="text-align:left;">Male</p>
                                                             </t>
                                                             <t t-if="o.gender=='ot'">
@@ -43,13 +42,20 @@
                                                              <t t-if="o.gender=='f'">
                                                                 <p style="text-align:left;">Female</p>
                                                             </t>
-                                                            <p style="text-align:left;" t-field="o.age"/>
+                                                            <p style="text-align:left;" t-field="o.age"/>    
                                                         </td>
-                                                    </tr>
+                                                    </tr>   
                                                 </table>
                                             </td>
+                                            <td>
+                                                <div style="height:200px;">
+                                                    <span t-field="o.qr_image" t-options='{"widget": "image"}' />
+                                                    <p t-field="o.name" style="margin-left:10px;"/>
+                                                </div>
+                                            </td>
                                         </tr>
-                                    </table>
+                                        
+                                   </table>
                                 </div>
                             </center>
                         </div>
@@ -58,6 +64,23 @@
                 </t>
             </t>
             </t>
-        </template>
+        </template>    
+<!-- 
+    <record id="patient_card_paperformat" model="report.paperformat">
+        <field name="name">Patient A4</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="margin_top">40</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="margin_bottom">23</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record> -->
+
     </data>
 </odoo>

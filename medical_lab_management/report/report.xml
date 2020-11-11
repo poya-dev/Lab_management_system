@@ -10,8 +10,6 @@
             <field name="attachment"></field>
         </record> -->
 
-
-
         <report
             string="Lab Test Result"
             id="print_lab_test"
@@ -19,6 +17,7 @@
             report_type="qweb-pdf"
             name="medical_lab_management.report_patient_labtest"
             file="medical_lab_management.report_patient_labtest"
+            print_report_name="'%s' % (object.lab_requestor.name)"
         />
 
 <!--        <record id="action_report_patient_label"  model="ir.actions.report">-->
@@ -29,6 +28,7 @@
 <!--            <field name="report_file">medical_lab_management.report_patient_label</field>-->
 <!--        </record>-->
 
+
         <report
             string="Patient Card"
             id="action_report_patient_label"
@@ -36,8 +36,9 @@
             report_type="qweb-pdf"
             name="medical_lab_management.report_patient_label"
             file="medical_lab_management.report_patient_label"
-
+            print_report_name="'Patient Card - %s' % (object.name)"
         />
+
 
     </data>
 </odoo>

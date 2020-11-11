@@ -19,6 +19,7 @@ access_lab_appointment_line_technician,lab.appointment.lines,model_lab_appointme
 access_lab_test_attribute_technician,lab.test.attribute,model_lab_test_attribute,group_lab_management_technician,1,1,1,1
 
 
+
 access_lab_request_nurses,medical_lab_management.lab.request,model_lab_request,medical_lab_management.group_lab_nurse,1,1,1,1
 access_lab_appointment_nurses,medical_lab_management.lab.appointment,model_lab_appointment,medical_lab_management.group_lab_nurse,1,1,1,0
 access_lab_appointment_lines_nurses,medical_lab_management.lab.appointment.lines,model_lab_appointment_lines,medical_lab_management.group_lab_nurse,1,1,1,0
@@ -41,6 +42,9 @@ access_cashier_menu,medical_lab_management.account.move,model_account_move,medic
 access_lab_appointment,medical_lab_management.lab.appointment,model_lab_appointment,medical_lab_management.group_lab_cashier,1,1,1,1
 access_lab_request,medical_lab_management.lab.request,model_lab_request,medical_lab_management.group_lab_cashier,1,1,1,1
 access_lab_appointment_lines,medical_lab_management.lab.appointment.lines,model_lab_appointment_lines,medical_lab_management.group_lab_cashier,1,1,1,1
+access_lab__patient,medical_lab_management.lab.patient.lines,model_lab_patient,medical_lab_management.group_lab_cashier,1,1,1,1
+
+
 
 access_lab_appointment_lines_reception,medical_lab_management.lab.appointment.lines,model_lab_appointment_lines,medical_lab_management.group_lab_reception,1,1,1,1
 access_lab_appointment_reception,medical_lab_management.lab.appointment,model_lab_appointment,medical_lab_management.group_lab_reception,1,1,1,1
