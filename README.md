@@ -28,7 +28,7 @@ fill in the results of the test for each sample on the test template pro-populat
 in the last we have reporting summary for better understanding with dashboard with 4 visual tabular report of visitor, payments collected, discounts allowed and tests conducted.
 
 
-
+------
 Odoo
 Odoo is a suite of web based open source business apps.
 
