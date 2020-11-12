@@ -13,7 +13,9 @@
                     Create Invoices.
                 </p>
             </field>
+
         </record>
+        
 
         <record id="lab_invoice_action_view_tree" model="ir.actions.act_window.view">
             <field name="sequence">1</field>
@@ -37,13 +39,16 @@
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click">
                                 <div class="oe_kanban_details">
-                                <strong>
-                                    <ul>
-                                        <li>Name :<field name="patient_id"/></li>
-                                        <li>Lab Request ID :<field name="name"/></li>
-                                        <li>Appointment Date :<field name="appointment_date"/></li>
-                                    </ul>
-                                </strong>
+                                    <strong>
+                                        <ul>
+                                            <li>Name :<field name="patient_id"/>
+                                            </li>
+                                            <li>Lab Request ID :<field name="name"/>
+                                            </li>
+                                            <li>Appointment Date :<field name="appointment_date"/>
+                                            </li>
+                                        </ul>
+                                    </strong>
                                 </div>
                             </div>
                         </t>
@@ -57,7 +62,7 @@
             <field name="model">lab.appointment</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <tree string="Appointments" >
+                <tree string="Appointments">
                     <field name="patient_id" />
                     <field name="name" />
                     <field name="state" />
@@ -76,25 +81,16 @@
                         <button name="action_request" states="to_invoice" string="Request Lab" type="object" class="oe_highlight" />
                         <button name="create_invoice" states="completed,confirm" string="Create Invoice" type="object" class="oe_highlight"/>
                         <button name="cancel_appointment" states="draft,confirm" string="Cancelled" type="object"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,to_invoice,request_lab,completed,invoiced"
-                               />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,to_invoice,request_lab,completed,invoiced" />
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="%(act_open_lab_request_view)d"
-                                type="action"
-                                class="oe_stat_button"
-                                icon="fa-building-o"
-                                context = "{'search_default_app_id': [active_id]}"
-                                attrs="{'invisible': [('request_count', '=', 0)]}">
+                            <button name="%(act_open_lab_request_view)d" type="action" class="oe_stat_button" icon="fa-building-o"
+                                context = "{'search_default_app_id': [active_id]}" attrs="{'invisible': [('request_count', '=', 0)]}">
                                 <field name="request_count" widget="statinfo" string="Lab Requests"/>
                             </button>
-                            <button name="%(lab_invoice_action)d"
-                                type="action"
-                                class="oe_stat_button"
-                                icon="fa-pencil-square-o"
-                                context = "{'search_default_lab_request': [active_id]}"
-                                attrs="{'invisible': [('inv_count', '=', 0)]}">
+                            <button name="%(lab_invoice_action)d" type="action" class="oe_stat_button" icon="fa-pencil-square-o"
+                                context = "{'search_default_lab_request': [active_id]}" attrs="{'invisible': [('inv_count', '=', 0)]}">
                                 <field name="inv_count" widget="statinfo" string="Lab Invoice"/>
                             </button>
                         </div>
@@ -118,8 +114,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page name="Note"
-                             string="Note">
+                            <page name="Note" string="Note">
                                 <field name="comment"/>
                             </page>
                         </notebook>
@@ -144,14 +139,10 @@
                     <field name="physician_id" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter name="patient_id" string="Patient"
-                            domain="[]" context="{'group_by':'patient_id'}" />
-                        <filter name="date" string="Date"
-                            domain="[]" context="{'group_by':'date'}" />
-                        <filter name="appointment_date" string="Appointment date"
-                            domain="[]" context="{'group_by':'appointment_date'}" />
-                        <filter name="physician_id" string="Physician"
-                            domain="[]" context="{'group_by':'physician_id'}" />
+                        <filter name="patient_id" string="Patient" domain="[]" context="{'group_by':'patient_id'}" />
+                        <filter name="date" string="Date" domain="[]" context="{'group_by':'date'}" />
+                        <filter name="appointment_date" string="Appointment date" domain="[]" context="{'group_by':'appointment_date'}" />
+                        <filter name="physician_id" string="Physician" domain="[]" context="{'group_by':'physician_id'}" />
                     </group>
                 </search>
             </field>
@@ -179,7 +170,7 @@
             <field name="res_model">lab.appointment</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_lab_appointment_search" />
-             <field name="domain">[('appointment_date', '&gt;=',((datetime.date.today()- datetime.timedelta(days=0)).strftime('%Y-%m-%d 00:00:00'))),
+            <field name="domain">[('appointment_date', '&gt;=',((datetime.date.today()- datetime.timedelta(days=0)).strftime('%Y-%m-%d 00:00:00'))),
              ('appointment_date', '&lt;=',((datetime.date.today()- datetime.timedelta(days=0)).strftime('%Y-%m-%d 23:59:59')))]
             </field>
             <field name="context">{}</field>
@@ -200,14 +191,9 @@
 
 
 
-        <menuitem id="menu_lab_appointment" name="Appointments" sequence="11"
-        parent="menu_root_lab" groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
-        <menuitem id="menu_lab_appointment_child" name="Appointments" sequence="10"
-        parent="menu_lab_appointment" action="act_open_lab_appointment_view"
-                  groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
-        <menuitem id="menu_lab_appointment_child_2" name=" Today's Appointments" sequence="11"
-                  groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"
-                  parent="menu_lab_appointment" action="act_open_lab_appointment_view_2"/>
+        <menuitem id="menu_lab_appointment" name="Appointments" sequence="11" parent="menu_root_lab" groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
+        <menuitem id="menu_lab_appointment_child" name="Appointments" sequence="10" parent="menu_lab_appointment" action="act_open_lab_appointment_view" groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
+        <menuitem id="menu_lab_appointment_child_2" name=" Today's Appointments" sequence="11" groups="group_lab_management_user,group_lab_management_technician,group_lab_reception" parent="menu_lab_appointment" action="act_open_lab_appointment_view_2"/>
 
         <record id="view_lab_patient_form_inherit" model="ir.ui.view">
             <field name="name">lab.patient.form</field>
@@ -216,14 +202,11 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//div[@name='button_box']" position="inside">
-                        <button name="%(act_open_lab_appointment_view)d"
-                                type="action"
-                                class="oe_stat_button"
-                                icon="fa-building-o"
-                                context = "{'search_default_patient_id': [active_id], 'default_patient_id':[active_id]}" >
-                                <field name="app_count" widget="statinfo" string="Appointments"/>
+                        <button name="%(act_open_lab_appointment_view)d" type="action" class="oe_stat_button" icon="fa-building-o"
+                                context = "{'search_default_patient_id': [active_id], 'default_patient_id':[active_id]}">
+                            <field name="app_count" widget="statinfo" string="Appointments"/>
 
-                            </button>
+                        </button>
                     </xpath>
                 </data>
             </field>
