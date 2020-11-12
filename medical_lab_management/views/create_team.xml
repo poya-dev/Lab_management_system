@@ -1,0 +1,56 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="create_teams_tree">
+      <field name="name">createTeams tree</field>
+      <field name="model">lab.createmobileteam</field>
+      <field name="arch" type="xml">
+        <tree>  
+                <field name="name"/>
+                <field name="member"/>
+                <field name="duty_state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="create_mobile_teams_form">
+      <field name="name">CreateTeams form</field>
+      <field name="model">lab.createmobileteam</field>
+      <field name="arch" type="xml">
+        <form string="Registration Form">  
+            <!-- <header>
+
+            <button  name="confirm_batch" states="draft"  string="Confirm" class="oe_highlight" type="object"/>
+            <button  name="dispatch_batch" states="confirm"   string="Dispatch" class="oe_highlight" type="object"/>
+            <button  name="receive_batch" states="dispatch"   string="Received" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team"/>
+            <button  name="returned" states="received"   string="Returned" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,confirm,dispatch,received,returned" statusbar_colors='{"Completed":"blue","Test In Progress":"red","Invoiced":"grey"}'/>
+
+            </header> -->
+            <sheet>
+              <group>
+                <field name="name"/>
+                <field name="member"/>
+                <field name="duty_state"/>
+                
+              </group>
+
+                            
+            </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="create_mobile_teams_action" model="ir.actions.act_window">
+        <field name="name">Create Mobile Teams</field>
+        <field name="res_model">lab.createmobileteam</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+   <!-- <menuitem id="lab_mobile_team_wizard" name="Mobile Team" sequence="21"
+        parent="menu_root_lab" action="mobile_team_member_action_window"
+        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician,group_lab_mobile_team,medical_lab_management.group_lab_technician,group_lab_reception"/>
+   -->
+  </data>
+</odoo>

@@ -48,11 +48,9 @@
 
 
 
-   <menuitem id="lab_batch_wizard" name="Create Batch" sequence="20"
+   <menuitem id="lab_batch_wizard" name="Lab Batch" sequence="20"
         parent="menu_root_lab" action="createbatch_action_window"
-        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician,group_lab_reception"/>
+        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse"/>
 
-
- 
   </data>
 </odoo>

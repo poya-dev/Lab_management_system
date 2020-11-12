@@ -115,10 +115,10 @@
 
         <menuitem id="menu_lab_request" name="Lab Request" sequence="12"
                   parent="menu_root_lab"
-                  groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician"/>
+                  groups="group_lab_management_user,group_lab_nurse"/>
         <menuitem id="menu_lab_request_child" name="Lab Technician" sequence="10"
                   parent="menu_lab_request" action="act_open_lab_request_view"
-                  groups="group_lab_management_user,group_lab_management_technician,group_lab_technician"/>
+                  groups="group_lab_management_user,group_lab_management_technician"/>
 
         <menuitem id="menu_lab_request_child1" name="Lab Nurse" sequence="11"
                   parent="menu_lab_request" action="act_open_lab_request_view"
