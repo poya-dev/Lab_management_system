@@ -10,7 +10,6 @@ class MobileTeam(models.Model):
     state = fields.Selection([('draft','Draft'), ('confirm','Confirm'), ('dispatch','Dispatch'), ('received','Received'), ('returned', 'Returned')], required=True, default='draft')
 
 
-
     def confirm_batch(self):
         return self.write({'state': 'confirm'})
 

@@ -33,14 +33,15 @@ class LabRequest(models.Model):
 
     name = fields.Char(string='Lab Test', size=16, readonly=True, required=True, help="Lab result ID", default=lambda *a: '#')
     lab_request_id = fields.Char(string='Appointment ID', help="Lab appointment ID")
+    mobile_team = fields.Char(string='Mobile Team Request')
     app_id = fields.Many2one('lab.appointment', string='Appointment')
     lab_requestor = fields.Many2one('lab.patient', string='Patient', required=True, select=True,
                                     help='Patient Name')
-    mobile_team = fields.Char(string='Mobile Team Request')
     test_request = fields.Many2one('lab.test', string='Test')
     lab_requesting_date = fields.Datetime(string='Requested Date')
     comment = fields.Text('Comment')
     request_line = fields.One2many('lab.test.attribute', 'test_request_reverse', string="Test Lines")
+    
     state = fields.Selection([
         ('draft', 'Draft'),
         ('sample_collection', 'Sample Collected'),

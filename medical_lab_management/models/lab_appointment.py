@@ -50,10 +50,9 @@ class Appointment(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirm', 'Confirmed'),
-        ('to_invoice', 'To Invoice'),
+        ('to_invoice', 'Invoiced'),
         ('request_lab', 'Lab Requested'),
-        ('completed', 'Test Result'),
-        ('invoiced', 'Done'),
+        ('completed', 'Test Completed'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft',
     )
@@ -81,63 +80,67 @@ class Appointment(models.Model):
             obj.inv_count = self.env['account.move'].search_count([('lab_request', '=', obj.id)])
 
     def create_invoice(self):
-        invoice_obj = self.env["account.move"]
-        invoice_line_obj = self.env["account.move.line"]
-        journal = self.env['account.journal'].search([('type', '=', 'sale')], limit=1)
-        # prd_account_id = journal.default_credit_account_id.id
-        prd_account_id = journal.default_account_id.id
-        for lab in self:
-            lab.write({'state': 'to_invoice'})
-            if lab.patient_id:
-                curr_invoice = {
-                    'partner_id': lab.patient_id.patient.id,
-                    # 'account_id': lab.patient_id.patient.property_account_receivable_id.id,
-                    'state': 'draft',
-                    'move_type': 'out_invoice',
-                    'invoice_date': str(datetime.datetime.now()),
-                    'invoice_origin': "Lab Test# : " + lab.name,
-                    # 'target': 'new',
-                    'lab_request': lab.id,
-                    'is_lab_invoice': True,
-                }
+        if self.appointment_lines:
+            invoice_obj = self.env["account.move"]
+            invoice_line_obj = self.env["account.move.line"]
+            journal = self.env['account.journal'].search([('type', '=', 'sale')], limit=1)
+            # prd_account_id = journal.default_credit_account_id.id
+            prd_account_id = journal.default_account_id.id
+            for lab in self:
+                lab.write({'state': 'to_invoice'})
+                if lab.patient_id:
+                    curr_invoice = {
+                        'partner_id': lab.patient_id.patient.id,
+                        # 'account_id': lab.patient_id.patient.property_account_receivable_id.id,
+                        'state': 'draft',
+                        'move_type': 'out_invoice',
+                        'invoice_date': str(datetime.datetime.now()),
+                        'invoice_origin': "Lab Test# : " + lab.name,
+                        # 'target': 'new',
+                        'lab_request': lab.id,
+                        'is_lab_invoice': True,
+                    }
 
-                inv_ids = invoice_obj.create(curr_invoice)
-                inv_id = inv_ids.id
+                    inv_ids = invoice_obj.create(curr_invoice)
+                    inv_id = inv_ids.id
 
-                if inv_ids:
-                    journal = self.env['account.journal'].search([('type', '=', 'sale')], limit=1)
-                    prd_account_id = journal.default_account_id.id
-                    list_value = []
-                    if lab.appointment_lines:
-                        for line in lab.appointment_lines:
-                            list_value.append((0,0, {
-                                        'name': line.lab_test.lab_test,
-                                                    'price_unit': line.cost,
-                                                    'quantity': 1.0,
-                                                    'account_id': prd_account_id,
-                                                    'move_id': inv_id,
-                                    }))
-                        print(list_value)
-                        inv_ids.write({'invoice_line_ids': list_value})
-                            # invoice_line_obj.update({
-                            #     'name': line.lab_test.lab_test,
-                            #     'price_unit': line.cost,
-                            #     'quantity': 1.0,
-                            #     'account_id': prd_account_id,
-                            #     'move_id': inv_id,
-                            # })
+                    if inv_ids:
+                        journal = self.env['account.journal'].search([('type', '=', 'sale')], limit=1)
+                        prd_account_id = journal.default_account_id.id
+                        list_value = []
+                        if lab.appointment_lines:
+                            for line in lab.appointment_lines:
+                                list_value.append((0,0, {
+                                            'name': line.lab_test.lab_test,
+                                                        'price_unit': line.cost,
+                                                        'quantity': 1.0,
+                                                        'account_id': prd_account_id,
+                                                        'move_id': inv_id,
+                                        }))
+                            print(list_value)
+                            inv_ids.write({'invoice_line_ids': list_value})
+                                # invoice_line_obj.update({
+                                #     'name': line.lab_test.lab_test,
+                                #     'price_unit': line.cost,
+                                #     'quantity': 1.0,
+                                #     'account_id': prd_account_id,
+                                #     'move_id': inv_id,
+                                # })
 
 
-                self.write({'state': 'to_invoice'})
-                view_id = self.env.ref('account.view_move_form').id
-                return {
-                    'view_mode': 'form',
-                    'res_model': 'account.move',
-                    'view_id': view_id,
-                    'type': 'ir.actions.act_window',
-                    'name': _('Lab Invoices'),
-                    'res_id': inv_id
-                }
+                    self.write({'state': 'to_invoice'})
+                    view_id = self.env.ref('account.view_move_form').id
+                    return {
+                        'view_mode': 'form',
+                        'res_model': 'account.move',
+                        'view_id': view_id,
+                        'type': 'ir.actions.act_window',
+                        'name': _('Lab Invoices'),
+                        'res_id': inv_id
+                    }
+        else:
+            raise UserError(_('Please Select Lab Test.'))
+
 
     def action_request(self):
         if self.appointment_lines:

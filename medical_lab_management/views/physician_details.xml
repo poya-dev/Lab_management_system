@@ -11,7 +11,7 @@
             <field name="filter" eval="True"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Add Physician. 
+                Click to add physician.
               </p>
             </field>
         </record>
