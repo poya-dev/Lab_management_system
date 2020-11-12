@@ -25,7 +25,6 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 import base64
 
-
 class LabRequest(models.Model):
     _name = 'lab.request'
     _inherit = ['mail.thread']
@@ -45,7 +44,6 @@ class LabRequest(models.Model):
     request_line = fields.One2many('lab.test.attribute', 'test_request_reverse', string="Test Lines")
     
     lab_result_pdf = fields.Binary()
-    
     
     state = fields.Selection([
         ('draft', 'Draft'),

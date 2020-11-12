@@ -26,7 +26,7 @@ from odoo import models, fields, api, _
 
 class LabPatient(models.Model):
     _name = 'lab.patient'
-    _rec_name = 'patient'
+    _rec_name = 'name'
     _description = 'Patient'
 
     patient = fields.Many2one('res.partner', string='Partner')
@@ -97,6 +97,9 @@ class LabPatient(models.Model):
         sequence = self.env['ir.sequence'].next_by_code('lab.patient')
         vals['name'] = sequence or _('New')
         result = super(LabPatient, self).create(vals)
+        print('_____________________________________________________________')
+        print(result)
+        print('_____________________________________________________________')
         # patient_register_confirmation(result)
         return result
 

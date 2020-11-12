@@ -32,7 +32,7 @@ class Appointment(models.Model):
     _description = "Appointment"
     _order = 'appointment_date'
 
-    user_id = fields.Many2one('res.users', 'Responsible', readonly=True)
+    user_id = fields.Many2one('res.users', 'Responsible', required=True)
     patient_id = fields.Many2one('lab.patient', string='Patient', required=True, select=True,
                                  help='Patient Name')
     name = fields.Char(string='Appointment ID', readonly=True, default=lambda self: _('New'))
@@ -44,8 +44,8 @@ class Appointment(models.Model):
     comment = fields.Text(string='Comments')
     appointment_lines = fields.One2many('lab.appointment.lines', 'test_line_appointment', string="Test Request")
 
-    request_count = fields.Integer(compute="_compute_state", string='# of Requests', copy=False, default=0)
-    inv_count = fields.Integer(compute="_compute_state", string='# of Invoices', copy=False, default=0)
+    request_count = fields.Integer(compute="_compute_state", string='Number of Requests', copy=False, default=0)
+    inv_count = fields.Integer(compute="_compute_state", string='Invoices Status', copy=False, default=0)
     mobile_team = fields.Char(string='Mobile Team Request')
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -67,6 +67,12 @@ class Appointment(models.Model):
     _defaults = {
         'priority': '0',
     }
+
+    @api.onchange('patient_id')
+    def validasi_form(self):
+        print(self.patient_id.title)
+    
+
 
     @api.model
     def create(self, vals):
@@ -177,7 +183,6 @@ class Appointment(models.Model):
 
     @api.onchange('patient_id')
     def _update_mobileteam(self):
-        print('------------------------TEST-----------------')
         pname = self.patient_id.id
         mobilteam = ""
         test_obj = self.env["lab.patient"].search([])
@@ -186,7 +191,6 @@ class Appointment(models.Model):
         ]
         records = test_obj.search(act_domain)
         valueee = records.mobile_team_request
-
         self.mobile_team = valueee
         # print('RECORD: ', records.mobile_team_request)
  
