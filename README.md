@@ -39,3 +39,4 @@ Odoo Apps can be used as stand-alone applications, but they also integrate seaml
 Getting started with Odoo
 For a standard installation please follow the Setup instructions from the documentation.
 
+https://www.odoo.com/documentation/14.0/setup/install.html
