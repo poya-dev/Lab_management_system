@@ -32,7 +32,7 @@ class Appointment(models.Model):
     _description = "Appointment"
     _order = 'appointment_date'
 
-    user_id = fields.Many2one('res.users', 'Responsible', required=True)
+    user_id = fields.Many2one('res.users', 'Responsible', required=False,)
     patient_id = fields.Many2one('lab.patient', string='Patient', required=True, select=True,
                                  help='Patient Name')
     name = fields.Char(string='Appointment ID', readonly=True, default=lambda self: _('New'))

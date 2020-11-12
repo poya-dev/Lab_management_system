@@ -85,5 +85,7 @@ class LabPatient(models.Model):
 
     @api.onchange('patient')
     def detail_get(self):
+        print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+        print(self.patient_image)
         self.phone = self.patient.phone
         self.email = self.patient.email

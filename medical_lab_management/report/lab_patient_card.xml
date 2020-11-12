@@ -19,7 +19,7 @@
                                             <td width="40%">
                                                 <p style="text-align:center;padding-top:10px;">
                                                     <img t-if="not o.patient_image" t-att-src="'/web/static/src/img/placeholder.png'" height="120" border="1" width="120"/>
-                                                    <img t-if="o.patient_image" t-att-src="'data:image/png;base64,%s' %o.patient_image" height="120" border="1" width="120"/>
+                                                    <img t-if="o.patient_image" t-att-src="'data:image/*;base64,%s' % to_text(o.patient_image)" height="120" border="1" width="120"/>
                                                 </p>
                                             </td>
                                              
