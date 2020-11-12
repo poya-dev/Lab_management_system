@@ -76,31 +76,11 @@ class LabPatient(models.Model):
             else:
                 data.age = ''
 
-    def patient_register_confirmation(self, result):
-    
-        message_body = "Dear " + result.patient.name + "," + "<br>You have successfully registered as Patient " \
-                                        + "<br>Your Patient ID : <bold>" + result.name + "<bold><br>Date : " + str(result.date) + \
-                '\bYou will soon recieve your Appointment confirmation Email.<br><br>Thank you'
-
-        template_obj = self.env['mail.mail']
-        template_data = {
-            'subject': 'Patient register Confirmation',
-            'body_html': message_body,
-            'email_from': self.env.user.company_id.email,
-            'email_to': result.email
-        }
-        template_id = template_obj.create(template_data)
-        template_obj.send(template_id)
-
     @api.model
     def create(self, vals):
         sequence = self.env['ir.sequence'].next_by_code('lab.patient')
         vals['name'] = sequence or _('New')
         result = super(LabPatient, self).create(vals)
-        print('_____________________________________________________________')
-        print(result)
-        print('_____________________________________________________________')
-        # patient_register_confirmation(result)
         return result
 
     @api.onchange('patient')

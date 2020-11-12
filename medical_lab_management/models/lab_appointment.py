@@ -163,8 +163,8 @@ class Appointment(models.Model):
 
     def confirm_appointment(self):
         message_body = "Dear " + self.patient_id.patient.name + "," + "<br>Your Appointment Has been Confirmed " \
-                                            + "<br>Appointment ID : " + self.name + "<br>Date : " + str(self.appointment_date) + \
-                    '<br><br>Thank you'
+                                            + "<br>Patient ID : " + self.patient_id.name + "<br>Date : " + str(self.appointment_date) + \
+                    '<br>Please keep your Patient ID with you, while visiting the Center<br><br>Thank you'
 
         template_obj = self.env['mail.mail']
         template_data = {
