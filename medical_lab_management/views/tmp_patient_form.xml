@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="tmp_patient_form" name="Partner Form">
+        <t t-call="website.layout">
+            <div id="wrap" class="" style="margin-top:80px;margin-bottom:100px;">
+                
+                <div class="container">
+                    <div class="col-md-12">
+                        <form action="/patient/form/submit">
+                                <div class="row">
+                                    <div class="form-group col-md-5">
+                                        <label for="title">Title:</label>
+                                        <select name="title" id="title" class="form-control">
+                                            <option value ="mister">Mr</option>
+                                            <option value ="ms">Miss</option>
+                                            <option value ="mrs">Mrs</option>
+                                        </select>
+                                        <!-- <input type="selection" class="form-control" name="title" id="title" /> -->
+                                    </div>
+                                    <!-- #url/controller to called on the form action. -->
+                                    <div class="form-group col-md-5">
+                                        <label for="patient">Patient Name:</label>
+                                        <input type="text" class="form-control" name="patient" id="patient" placeholder="Patient Name" required="1" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-5">
+                                        <label for="dob">Dob:</label>
+                                        <input type="date" class="form-control" name="dob" id="dob"  required="1"/>
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label for="visa_info">Visa Info:</label>
+                                        <input type="text" class="form-control" name="visa_info" id="visa_info" placeholder="visa info" required="1" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-5">
+                                        <label for="gender">Gender:</label>
+                                        <select name="gender" id="gender" class="form-control" required="1">
+                                            <option value ="m">Male</option>
+                                            <option value ="f">Female</option>
+                                            <option value ="ot">Other</option>
+
+                                        </select>
+                                        <!-- <input type="text" class="form-control" name="gender" id="gender" /> -->
+                                    </div>
+
+                                    <div class="form-group col-md-5">
+                                        <label for="blood_group">Blood group:</label>
+                                        <select name="blood_group" id="blood_group" class="form-control" required="1">
+                                            <option value ="A+">A+ve</option>
+                                            <option value ="B+">B+ve</option>
+                                            <option value ="O+">O+ve</option>
+                                            <option value ="AB+">AB+ve</option>
+                                            <option value ="A-">A-ve</option>
+                                            <option value ="B-">B-ve</option>
+                                            <option value ="O-">O-ve</option>
+                                            <option value ="AB-">AB-ve</option>
+                                        </select>
+                                    </div>
+                                 
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-5">
+                                        <label for="phone">Phone:</label>
+                                        <input type="phone" class="form form-control" name="phone" id="phone" placeholder="phone number" required="1"/>
+                                    </div>
+                                       <div class="form-group col-md-5">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="abc@gmail.com" required="1" />
+                                    </div>
+                                </div><br/>
+                               
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info">Make an Appointment</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+

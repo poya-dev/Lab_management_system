@@ -1,35 +1,16 @@
 # -*- coding: utf-8 -*-
-#############################################################################
-#
-#    Cybrosys Technologies Pvt. Ltd.
-#
-#    Copyright (C) 2020-TODAY Cybrosys Technologies(<https://www.cybrosys.com>).
-#
-#    You can modify it under the terms of the GNU AFFERO
-#    GENERAL PUBLIC LICENSE (AGPL v3), Version 3.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU AFFERO GENERAL PUBLIC LICENSE (AGPL v3) for more details.
-#
-#    You should have received a copy of the GNU AFFERO GENERAL PUBLIC LICENSE
-#    (AGPL v3) along with this program.
-#    If not, see <http://www.gnu.org/licenses/>.
-#
-#############################################################################
+
 
 {
     'name': "Medical Lab Management",
     'version': '14.0.1.0.0',
     'summary': """Manage Medical Lab Operations.""",
     'description': """Manage Medical Lab General Operations, Odoo13, Odoo 13""",
-    'author': "Cybrosys Techno Solutions",
-    'maintainer': 'Cybrosys Techno Solutions',
-    'company': "Cybrosys Techno Solutions",
-    'website': "https://www.cybrosys.com",
+
     'category': 'Industries',
-    'depends': ['base', 'mail', 'account'],
+
+    'depends': ['base', 'mail', 'account', 'website', 'im_livechat', 'account', 'website_mail_channel', 'website_blog'],
+
     'data': [
         'security/lab_users.xml',
         'security/ir.model.access.csv',
@@ -52,6 +33,17 @@
         'report/report.xml',
         'report/lab_test_report.xml',
         'report/lab_patient_card.xml',
+
+        # 'views/custommodel.xml',
+        'views/create_partner_by_website.xml',
+        # 'views/create_partner.xml',
+        # 'views/tmp_customer_registration_form.xml',
+        # 'views/tmp_customer_registration_form_success.xml',
+        'views/tmp_patient_form_success.xml',
+        'views/tmp_patient_form.xml',
+        # 'views/tmp_login_form.xml',
+        # 'views/tmp_login_form_success.xml',
+        'views/index.xml',
     ],
     'images': ['static/description/banner.png'],
     'license': 'AGPL-3',

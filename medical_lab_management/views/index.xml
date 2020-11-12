@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <template id="index">
+            <t t-call="website.layout">
+                <field name="arch" type="xml">
+                    <div class="container" style="margin-top:100;margin-bottom:50;">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>PID</th>
+                                <th>Lab Requestor</th>
+                                <th>Lab Result</th>
+                                <th>Test Date</th>
+                            </tr>
+                            <t t-foreach="lab_result" t-as="lr">    
+                            <tr>
+                                <td t-if="lr.id">
+                                    <t t-esc="lr.id" />
+                                </td>
+                                <td t-if="lr.lab_requestor.name">
+                                    <t t-esc="lr.lab_requestor.name"/>
+                                </td>
+                                <td t-if="lr.lab_requestor.patient.name">
+                                    <t t-esc="lr.lab_requestor.patient.name"/>
+                                </td>
+                                <td>
+                                    <t t-if="lr.lab_result_pdf">
+                                    <span align="center">
+                                        <a t-att-href="'data:application/pdf;base64,%s' % to_text(lr.lab_result_pdf)"
+                                            t-att-download="lr.name">
+                                            <button type="button" class="btn btn-success btn-sm">Download</button>
+                                        </a>
+                                    </span>
+                                    </t>
+                                </td>
+                                <td t-if="lr.write_date">
+                                    <t t-esc="lr.write_date.strftime('%d/%m/%Y')" />
+                                </td>
+                            </tr>
+                            </t>
+
+                        </table>
+                    </div>
+                </field>
+            </t>
+        </template>
+    </data>
+</odoo>
