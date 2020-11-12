@@ -10,7 +10,7 @@ we used those functionslities that's provided by odoo community system like inov
 
 
 
-#Users
+#Lab_management_system
 This system we have 6 types of users like Customer, Receptionist, Cashier, Nurse, Lab Techincian, Center Manager.
 Every user have different access rule that's defiend by admin for efficient works
 
