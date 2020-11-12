@@ -6,7 +6,7 @@ class Batch(models.Model):
     _description = "lab.createbatch"
 
     batch_name = fields.Char(string="Name", required=True, help="batch name")
-    collected_sample = fields.Many2many('lab.request',domain=([('state', '=', 'sample_collection')]))
+    collected_sample = fields.Many2many('lab.request',domain=(['|',('state', '=', 'sample_collection'), ('state', '=', 'completed')]))
     state = fields.Selection([('draft','Draft'), ('confirm','Confirm'), ('dispatch','Dispatch'), ('received','Received')], required=True, default='draft')
 
 

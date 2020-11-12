@@ -45,7 +45,7 @@
         'views/account_invoice.xml',
         'views/lab_cashier.xml',
         'views/lab_createbatch.xml',
-        'views/centre_manager.xml',
+        'views/center_manager.xml',
         'views/lab_mobile_team.xml',
         'views/create_team.xml',
         'views/assign_mobile_team.xml',
