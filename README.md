@@ -39,15 +39,3 @@ Odoo Apps can be used as stand-alone applications, but they also integrate seaml
 Getting started with Odoo
 For a standard installation please follow the Setup instructions from the documentation.
 
-If you are a developer you may type the following command at your terminal:
-
-wget -O- https://raw.githubusercontent.com/odoo/odoo/9.0/odoo.py | python
-Then follow the developer tutorials
-
-For Odoo employees
-To add the odoo-dev remote use this command:
-
-$ ./odoo.py setup_git_dev
-To fetch odoo merge pull requests refs use this command:
-
-$ ./odoo.py setup_git_review
