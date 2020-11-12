@@ -21,4 +21,25 @@
         </t>
     </template>
 
+    <report
+        string="Sticker Barcode"
+        id="sticker_barcode_action"
+        model="account.move"
+        report_type="qweb-pdf"
+        name="ehcs_qr_code_invoice.sticker_barcode_template"
+        file="ehcs_qr_code_invoice.sticker_barcode_template"
+        print_report_name="'Barcode of %s' % (object.invoice_partner_display_name)"
+        />
+
+        <!--Template for hotel folio -->
+        <template id="sticker_barcode_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <img t-att-src="'data:image/png;base64,%s' % (qr_code_image)"/>
+                    </div>
+                </t>           
+            </t>
+        </template>
+
 </odoo>

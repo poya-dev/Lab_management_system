@@ -40,9 +40,9 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="Patient">
+                    <field name="name" />
                     <field name="title" />
                     <field name="patient" />
-                    <field name="name" />
                     <field name="phone"/>
                     <field name="email"/>
                     <field name="mobile_team_request"/>

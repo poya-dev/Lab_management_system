@@ -64,8 +64,11 @@
             <field name="arch" type="xml">
                 <tree string="Appointments">
                     <field name="patient_id" />
-                    <field name="name" />
                     <field name="state" />
+                    <field name="comment" />
+                    <field name="inv_count" />
+                    <field name="request_count" />
+                    <field name="appointment_date" />
                 </tree>
             </field>
         </record>
@@ -95,14 +98,14 @@
                             </button>
                         </div>
                         <group>
-                            <group col="4" colspan="4">
+                            <group col="5" colspan="5">
                                 <field name="patient_id" />
-                                <field name="priority" widget="priority"/>
+                                <!-- <field name="priority" widget="priority"/> -->
                                 <field name="name" />
                                 <field name="date" />
                                 <field name="appointment_date" />
-                                <field name="physician_id" domain="[('is_physician','=',True)]" context="{'search_default_is_physician':1, 'default_is_physician':1}"/>
-                                <field name="mobile_team"/>
+                                <!-- <field name="physician_id" domain="[('is_physician','=',True)]" context="{'search_default_is_physician':1, 'default_is_physician':1}"/> -->
+                                <field name="mobile_team" readonly="1"/>
                             </group>
                         </group>
                         <notebook colspan="4">

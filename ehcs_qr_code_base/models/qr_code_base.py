@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import qrcode
-
 import base64
 from io import BytesIO
 
@@ -20,3 +19,4 @@ def generate_qr_code(name):
     img.save(temp, format="PNG")
     qr_img = base64.b64encode(temp.getvalue())
     return qr_img
+
