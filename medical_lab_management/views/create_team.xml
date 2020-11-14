@@ -25,7 +25,7 @@
             <button  name="dispatch_batch" states="confirm"   string="Dispatch" class="oe_highlight" type="object"/>
             <button  name="receive_batch" states="dispatch"   string="Received" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team"/>
             <button  name="returned" states="received"   string="Returned" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team"/>
-            <field name="state" widget="statusbar" statusbar_visible="draft,confirm,dispatch,received,returned" statusbar_colors='{"Completed":"blue","Test In Progress":"red","Invoiced":"grey"}'/>
+            <field name="state" widget="statusbar" statusbar_visible="waiting,on_duty"/>
 
             </header> -->
             <sheet>
@@ -41,6 +41,7 @@
         </form>
       </field>
     </record>
+
     <record id="create_mobile_teams_action" model="ir.actions.act_window">
         <field name="name">Create Mobile Teams</field>
         <field name="res_model">lab.createmobileteam</field>

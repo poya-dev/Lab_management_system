@@ -44,7 +44,7 @@ class LabRequest(models.Model):
     comment = fields.Text('Comment')
     request_line = fields.One2many('lab.test.attribute', 'test_request_reverse', string="Test Lines")
     
-    lab_result_pdf = fields.Binary()
+    # lab_result_pdf = fields.Binary()
     
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -82,6 +82,11 @@ class LabRequest(models.Model):
             app_obj = self.env['lab.appointment'].search([('id', '=', self.app_id.id)])
             app_obj.write({'state': 'completed'})
         return self.write({'state': 'completed'})
+
+
+    def print_lab_test(self):
+        return self.env.ref('medical_lab_management.print_lab_test').report_action(self)
+
 
 
     def print_and_send_lab_result_to_user(self):

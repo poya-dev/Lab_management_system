@@ -69,8 +69,16 @@
                                         <label for="email">Email:</label>
                                         <input type="email" class="form-control" name="email" id="email" placeholder="abc@gmail.com" required="1" />
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-5">
+                                        <label for="mobile_team">Mobile Team Request :</label>
+                                        <select name="mobile_team" id="mobile_team" class="form-control" required="1">
+                                            <option value ="n">No</option>
+                                            <option value ="y">Yes</option>
+                                        </select>
+                                    </div>
                                 </div><br/>
-                               
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-info">Make an Appointment</button>
                                 </div>
