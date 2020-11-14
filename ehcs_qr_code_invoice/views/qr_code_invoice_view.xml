@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//form/header/button[@name='button_draft']" position="after">
                     <button string="Generate Sticker Barcode for Tube" name="sticker_barcode_generator"
-                     type="object" attrs="{'invisible': ['|', '|', ('move_type', 'not in', ('out_invoice', 'in_invoice')), ('state', '!=', 'posted'), ('payment_state', 'not in', 'paid')]}"/>
+                     type="object" attrs="{'invisible': ['|', '|', ('move_type', 'not in', ('out_invoice', 'in_invoice')), ('state', '!=', 'posted'), ('payment_state', 'not in', 'paid')]}" class="oe_highlight"/>
                 </xpath>
             </field>
         </record>   

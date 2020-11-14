@@ -62,4 +62,11 @@
 
 
 
+     <!-- <record id="group_lab_management_reception" model="res.groups">
+         <field name="name">reception</field>
+         <field name="category_id" ref="module_category_lab_management"/>
+         <field name="implied_ids" eval="[(4, ref('group_lab_management_user'))]"/>
+         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+     </record> -->
+
 </odoo>

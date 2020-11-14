@@ -21,11 +21,10 @@
                 <form string="Lab Request">
                     <header>
                         <button  name="set_to_sample_collection" states="draft" string="Sample Collection" type="object" class="oe_highlight"/>
-                        <button  name="set_to_test_in_progress" states="sample_collection" string="Test In Progress" type="object" class="oe_highlight"/>
-                      
                         <button  name="set_to_test_in_progress" states="sample_collection" string="Test In Progress" type="object" class="oe_highlight" groups="medical_lab_management.group_lab_technician"/>
                         <button  name="set_to_test_completed" states="test_in_progress" string="Complete Test" type="object" class="oe_highlight"/>
-                        <button  name="print_and_send_lab_result_to_user" states="completed,invoiced" string="Send Lab Test Result To User" type="object" class="oe_highlight"/>
+                        <button  name="print_and_send_lab_result_to_user" groups="medical_lab_management.group_lab_technician" states="completed,invoiced" string="Send Lab Test Result To User" type="object" class="oe_highlight"/>
+                        <button  name="print_lab_test" states="completed,invoiced" string="Print Lab Test" type="object" class="oe_highlight"/>
                         <button  name="cancel_lab_test" states="draft" string="Cancel" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,sample_collection,test_in_progress,completed" statusbar_colors='{"Completed":"blue","Test In Progress":"red","Invoiced":"grey"}'/>
                     </header>
@@ -115,10 +114,10 @@
 
         <menuitem id="menu_lab_request" name="Lab Request" sequence="12"
                   parent="menu_root_lab"
-                  groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician"/>
+                  groups="group_lab_management_user,group_lab_nurse"/>
         <menuitem id="menu_lab_request_child" name="Lab Technician" sequence="10"
                   parent="menu_lab_request" action="act_open_lab_request_view"
-                  groups="group_lab_management_user,group_lab_management_technician,group_lab_technician"/>
+                  groups="group_lab_management_user,group_lab_management_technician"/>
 
         <menuitem id="menu_lab_request_child1" name="Lab Nurse" sequence="11"
                   parent="menu_lab_request" action="act_open_lab_request_view"

@@ -81,10 +81,13 @@
                 <form string="Appointment">
                     <header>
                         <button name="confirm_appointment" states="draft" string="Confirm" type="object" class="oe_highlight" />
-                        <button name="action_request" states="to_invoice" string="Request Lab" type="object" class="oe_highlight" />
-                        <button name="create_invoice" states="completed,confirm" string="Create Invoice" type="object" class="oe_highlight"/>
+                        <!-- <button name="action_request" states="to_invoice" string="Request Lab" type="object" class="oe_highlight" /> -->
+                        <button name="create_invoice" states="confirm" string="Create Invoice" type="object" class="oe_highlight"/>
                         <button name="cancel_appointment" states="draft,confirm" string="Cancelled" type="object"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,to_invoice,request_lab,completed,invoiced" />
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,to_invoice,request_lab,completed"
+                               />
+                               
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">

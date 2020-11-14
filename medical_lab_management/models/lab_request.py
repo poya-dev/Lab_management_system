@@ -33,6 +33,7 @@ class LabRequest(models.Model):
 
     name = fields.Char(string='Lab Test', size=16, readonly=True, required=True, help="Lab result ID", default=lambda *a: '#')
     lab_request_id = fields.Char(string='Appointment ID', help="Lab appointment ID")
+    mobile_team = fields.Char(string='Mobile Team Request')
     app_id = fields.Many2one('lab.appointment', string='Appointment')
     lab_requestor = fields.Many2one('lab.patient', string='Patient', required=True, select=True,
                                     help='Patient Name')
@@ -43,7 +44,7 @@ class LabRequest(models.Model):
     comment = fields.Text('Comment')
     request_line = fields.One2many('lab.test.attribute', 'test_request_reverse', string="Test Lines")
     
-    lab_result_pdf = fields.Binary()
+    # lab_result_pdf = fields.Binary()
     
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -81,6 +82,11 @@ class LabRequest(models.Model):
             app_obj = self.env['lab.appointment'].search([('id', '=', self.app_id.id)])
             app_obj.write({'state': 'completed'})
         return self.write({'state': 'completed'})
+
+
+    def print_lab_test(self):
+        return self.env.ref('medical_lab_management.print_lab_test').report_action(self)
+
 
 
     def print_and_send_lab_result_to_user(self):
