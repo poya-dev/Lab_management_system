@@ -9,6 +9,7 @@ class Summary(models.Model):
     no_of_visitor = fields.Integer(string="No of visitor", compute='count_visitor')
     no_of_appointment = fields.Integer(string='No of Appointment', compute='count_total_appoitment')
     no_of_todays_appointment = fields.Integer(string='To-Day Appointment',compute='count_today_appoitment')
+    
     total_amount_of_payment = fields.Float(string='Total Payment', compute='count_total_payment')
     total_amount_paid = fields.Float(string='Total Amount Paid', compute='count_total_amount_paid')
     total_due_amount = fields.Float(string='Total Due Amount',compute='count_total_due_amount')

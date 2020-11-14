@@ -23,7 +23,7 @@
 import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
-
+import base64
 
 class LabRequest(models.Model):
     _name = 'lab.request'
@@ -33,13 +33,19 @@ class LabRequest(models.Model):
 
     name = fields.Char(string='Lab Test', size=16, readonly=True, required=True, help="Lab result ID", default=lambda *a: '#')
     lab_request_id = fields.Char(string='Appointment ID', help="Lab appointment ID")
+    mobile_team = fields.Char(string='Mobile Team Request')
     app_id = fields.Many2one('lab.appointment', string='Appointment')
     lab_requestor = fields.Many2one('lab.patient', string='Patient', required=True, select=True,
                                     help='Patient Name')
     test_request = fields.Many2one('lab.test', string='Test')
     lab_requesting_date = fields.Datetime(string='Requested Date')
+    lab_result_pdf = fields.Binary()
+    mobile_team = fields.Char(string='Mobile Team Request')
     comment = fields.Text('Comment')
     request_line = fields.One2many('lab.test.attribute', 'test_request_reverse', string="Test Lines")
+    
+    # lab_result_pdf = fields.Binary()
+    
     state = fields.Selection([
         ('draft', 'Draft'),
         ('sample_collection', 'Sample Collected'),
@@ -77,8 +83,17 @@ class LabRequest(models.Model):
             app_obj.write({'state': 'completed'})
         return self.write({'state': 'completed'})
 
+
     def print_lab_test(self):
         return self.env.ref('medical_lab_management.print_lab_test').report_action(self)
+
+
+
+    def print_and_send_lab_result_to_user(self):
+        pdf = self.env.ref('medical_lab_management.print_lab_test')._render_qweb_pdf(self.id)[0]
+        encoded_pdf = base64.b64encode(pdf)
+        self.lab_result_pdf = encoded_pdf
+
 
     def lab_invoice_create(self):
         invoice_obj = self.env["account.move"]

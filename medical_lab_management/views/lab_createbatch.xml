@@ -3,7 +3,7 @@
     <!-- explicit list view definition -->
 
     <record model="ir.ui.view" id="createbatch_tree">
-      <field name="name">createbatch tree</field>
+      <field name="name">Create Batch Tree</field>
       <field name="model">lab.createbatch</field>
       <field name="arch" type="xml">
         <tree>  
@@ -14,7 +14,7 @@
     </record>
 
     <record model="ir.ui.view" id="createbatch_form">
-      <field name="name">createbatch form</field>
+      <field name="name">Create Batch Form</field>
       <field name="model">lab.createbatch</field>
       <field name="arch" type="xml">
         <form string="Registration Form">  
@@ -41,18 +41,17 @@
 
 
     <record model="ir.actions.act_window" id="createbatch_action_window">
-      <field name="name">createbatch window</field>
+      <field name="name">Create Batch</field>
       <field name="res_model">lab.createbatch</field>
+      <field name="domain">[('collected_sample','!=',False)]</field>
       <field name="view_mode">tree,form</field>
     </record>
 
 
 
-   <menuitem id="lab_batch_wizard" name="Create Batch" sequence="20"
+   <menuitem id="lab_batch_wizard" name="Lab Batch" sequence="20"
         parent="menu_root_lab" action="createbatch_action_window"
-        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician"/>
+        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse"/>
 
-
- 
   </data>
 </odoo>

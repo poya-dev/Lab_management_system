@@ -59,8 +59,11 @@
             <field name="arch" type="xml">
                 <tree string="Appointments" >
                     <field name="patient_id" />
-                    <field name="name" />
                     <field name="state" />
+                    <field name="comment" />
+                    <field name="inv_count" />
+                    <field name="request_count" />
+                    <field name="appointment_date" />
                 </tree>
             </field>
         </record>
@@ -73,10 +76,10 @@
                 <form string="Appointment">
                     <header>
                         <button name="confirm_appointment" states="draft" string="Confirm" type="object" class="oe_highlight" />
-                        <button name="action_request" states="to_invoice" string="Request Lab" type="object" class="oe_highlight" />
-                        <button name="create_invoice" states="completed,confirm" string="Create Invoice" type="object" class="oe_highlight"/>
+                        <!-- <button name="action_request" states="to_invoice" string="Request Lab" type="object" class="oe_highlight" /> -->
+                        <button name="create_invoice" states="confirm" string="Create Invoice" type="object" class="oe_highlight"/>
                         <button name="cancel_appointment" states="draft,confirm" string="Cancelled" type="object"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,to_invoice,request_lab,completed,invoiced"
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,to_invoice,request_lab,completed"
                                />
                     </header>
                     <sheet>
@@ -99,14 +102,14 @@
                             </button>
                         </div>
                         <group>
-                            <group col="4" colspan="4">
+                            <group col="5" colspan="5">
                                 <field name="patient_id" />
-                                <field name="priority" widget="priority"/>
+                                <!-- <field name="priority" widget="priority"/> -->
                                 <field name="name" />
                                 <field name="date" />
                                 <field name="appointment_date" />
-                                <field name="physician_id" domain="[('is_physician','=',True)]" context="{'search_default_is_physician':1, 'default_is_physician':1}"/>
-                                <field name="mobile_team"/>
+                                <!-- <field name="physician_id" domain="[('is_physician','=',True)]" context="{'search_default_is_physician':1, 'default_is_physician':1}"/> -->
+                                <field name="mobile_team" readonly="1"/>
                             </group>
                         </group>
                         <notebook colspan="4">

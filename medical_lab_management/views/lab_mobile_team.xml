@@ -1,7 +1,7 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-
+<!-- 
     <record model="ir.ui.view" id="mobile_team_tree">
       <field name="name">MobileTeam tree</field>
       <field name="model">lab.mobileteam</field>
@@ -11,8 +11,8 @@
                 <field name="patients_requested"/>
         </tree>
       </field>
-    </record>
-
+    </record> -->
+<!-- 
     <record model="ir.ui.view" id="mobile_team_form">
       <field name="name">MobileTeam form</field>
       <field name="model">lab.mobileteam</field>
@@ -38,20 +38,28 @@
             </sheet>
         </form>
       </field>
-    </record>
+    </record> -->
 
-
+<!-- 
     <record model="ir.actions.act_window" id="mobile_team_action_window">
       <field name="name">mobile team window</field>
       <field name="res_model">lab.mobileteam</field>
       <field name="view_mode">tree,form</field>
-    </record>
+    </record> -->
 
 
+   <menuitem id="lab_mobile_team_wizard1" name="Mobile Team" sequence="20"
+        parent="menu_root_lab"
+        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician,medical_lab_management.group_lab_mobile_team,medical_lab_management.group_lab_technician,group_lab_reception" />
 
-   <menuitem id="lab_mobile_team_wizard" name="Mobile Team" sequence="20"
-        parent="menu_root_lab" action="mobile_team_action_window"
-        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician,group_lab_mobile_team,medical_lab_management.group_lab_technician"/>
-         
+    <menuitem id="create_mobiles_teams1" name="Create Mobile Team" sequence="18"
+      parent="lab_mobile_team_wizard1" action="create_mobile_teams_action"
+      groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician,medical_lab_management.group_lab_mobile_team,group_lab_reception" />
+
+
+    <menuitem id="assign_mobile_team1" name="Assign Mobile Team" sequence="19"
+      parent="lab_mobile_team_wizard1" action="assign_mobile_team_action"
+      groups="group_lab_management_user,group_lab_management_technician,medical_lab_management.group_lab_mobile_team,group_lab_reception"/>
+  
   </data>
 </odoo>

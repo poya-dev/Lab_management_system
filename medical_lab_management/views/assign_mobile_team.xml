@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="assign_team_tree">
+      <field name="name">assignTeam tree</field>
+      <field name="model">lab.assignteam</field>
+      <field name="arch" type="xml">
+        <tree>  
+                <field name="team"/>
+                <field name="patient"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="create_mobile_team_form">
+      <field name="name">CreateTeam form</field>
+      <field name="model">lab.assignteam</field>
+      <field name="arch" type="xml">
+        <form string="Registration Form">  
+            <header>
+
+            <button  name="assign_team" states="draft"  string="Assign" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team,medical_lab_management.group_lab_reception"/>
+            <button  name="return_team" states="assign"   string="Returned" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,assign,return" statusbar_colors='{"Completed":"blue","Test In Progress":"red","Invoiced":"grey"}'/>
+
+            </header>
+            <sheet>
+              <group>
+                <field name="team"/>
+                <field name="patient"/>
+                
+              </group>
+
+                            
+            </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="assign_mobile_team_action" model="ir.actions.act_window">
+        <field name="name">Assing Mobile Team</field>
+        <field name="res_model">lab.assignteam</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+   <!-- <menuitem id="lab_mobile_team_wizard" name="Mobile Team" sequence="21"
+        parent="menu_root_lab" action="mobile_team_member_action_window"
+        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician,group_lab_mobile_team,medical_lab_management.group_lab_technician,group_lab_reception"/>
+   -->
+  </data>
+</odoo>
