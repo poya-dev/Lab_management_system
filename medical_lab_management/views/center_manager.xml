@@ -12,6 +12,7 @@
                                             oe_kanban_global_click oe_semantic_html_override
                                             oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
                         
+                        
                             <div t-attf-class="oe_kanban_content">
 
                                 <t t-if="record.unique_ident.raw_value == '1'">

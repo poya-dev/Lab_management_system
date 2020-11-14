@@ -3,8 +3,8 @@ from datetime import date
 
 
 class Summary(models.Model):
-    _name = 'summary'
-    _description = "summary"
+    _name = 'lab.summary'
+    _description = "lab.summary"
 
     no_of_visitor = fields.Integer(string="No of visitor", compute='count_visitor')
     no_of_appointment = fields.Integer(string='No of Appointment', compute='count_total_appoitment')

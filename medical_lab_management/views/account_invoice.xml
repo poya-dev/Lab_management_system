@@ -20,11 +20,6 @@
                     <field name="lab_status"/>
                 </xpath>
 
-                <xpath expr="//form/header/button[@name='action_reverse']" position="replace">
-                    <button string="Generate Sticker Barcode for Tube" name="sticker_barcode_generator"
-                     type="object" attrs="{'invisible': ['|', '|', ('move_type', 'not in', ('out_invoice', 'in_invoice')), ('state', '!=', 'posted'), ('payment_state', 'not in', 'paid')]}"/>
-                </xpath>
-
                 <xpath expr="//field[@name='invoice_date']" position="after">
                     <field name="is_lab_invoice" invisible="1"/>
                     <field name="lab_request" />

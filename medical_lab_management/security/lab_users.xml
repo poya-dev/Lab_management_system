@@ -62,7 +62,6 @@
 
 
 
-
      <!-- <record id="group_lab_management_reception" model="res.groups">
          <field name="name">reception</field>
          <field name="category_id" ref="module_category_lab_management"/>

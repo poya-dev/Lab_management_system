@@ -3,7 +3,7 @@
     <!-- explicit list view definition -->
 
     <record model="ir.ui.view" id="createbatch_tree">
-      <field name="name">createbatch tree</field>
+      <field name="name">Create Batch Tree</field>
       <field name="model">lab.createbatch</field>
       <field name="arch" type="xml">
         <tree>  
@@ -14,7 +14,7 @@
     </record>
 
     <record model="ir.ui.view" id="createbatch_form">
-      <field name="name">createbatch form</field>
+      <field name="name">Create Batch Form</field>
       <field name="model">lab.createbatch</field>
       <field name="arch" type="xml">
         <form string="Registration Form">  
@@ -41,8 +41,9 @@
 
 
     <record model="ir.actions.act_window" id="createbatch_action_window">
-      <field name="name">createbatch window</field>
+      <field name="name">Create Batch</field>
       <field name="res_model">lab.createbatch</field>
+      <field name="domain">[('collected_sample','!=',False)]</field>
       <field name="view_mode">tree,form</field>
     </record>
 

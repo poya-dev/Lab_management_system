@@ -26,7 +26,8 @@ class labpatientForm(http.Controller):
             'blood_group': post.get('blood_group'),
             'visa_info': post.get('visa_info'),
             'phone': post.get('phone'),
-            'email': post.get('email')
+            'email': post.get('email'),
+            'mobile_team_request': post.get('mobile_team'),
         })
 
         vals = {
