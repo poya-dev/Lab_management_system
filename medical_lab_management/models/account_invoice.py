@@ -48,32 +48,34 @@ class LabRequestInvoices(models.Model):
         act_domain = [
             ("id", "=", tname),
         ]
-
         records = test_obj.search(act_domain)
-        valueee = records.appointment_lines.lab_test.lab_test
-        data1 = self.env['lab.appointment'].search([('name', '=', self.lab_request.name)])
-        name1 = data1.name
-        mobile_team1 = data1.mobile_team
-        llid = data1.id
-        print("+++++++++++++++++test+++++++++++++++++++++++++++++++++++++++++")
-        print(data1.id)
-        
-        patient_id1 = data1.patient_id.id
-        appointment_date1 = data1.appointment_date
-    
-        data = self.env['lab.test'].search([('lab_test', '=', valueee)])
-        self.env['lab.request'].create({'lab_request_id': name1,
-                                        'mobile_team': mobile_team1,
-                                        'app_id': llid,
-                                        'lab_requestor': patient_id1,
-                                        'lab_requesting_date': appointment_date1,
-                                        'test_request': data.id,
-                                        'request_line': [(6, 0, [x.id for x in data.test_lines])],
-                                        })
 
-        print([(6, 0, [x.id for x in data.test_lines])])
-        data1.state = 'request_lab'
-        self.lab_status = 'lab_request'
+        valueee = records.appointment_lines
+        
+        for v in valueee:
+
+
+                data1 = self.env['lab.appointment'].search([('name', '=', self.lab_request.name)])
+                name1 = data1.name
+                mobile_team1 = data1.mobile_team
+                llid = data1.id
+                
+                patient_id1 = data1.patient_id.id
+                appointment_date1 = data1.appointment_date
+            
+                data = self.env['lab.test'].search([('lab_test', '=', v.lab_test.lab_test)])
+                self.env['lab.request'].create({'lab_request_id': name1,
+                                                'mobile_team': mobile_team1,
+                                                'app_id': llid,
+                                                'lab_requestor': patient_id1,
+                                                'lab_requesting_date': appointment_date1,
+                                                'test_request': data.id,
+                                                'request_line': [(6, 0, [x.id for x in data.test_lines])],
+                                                })
+
+                print([(6, 0, [x.id for x in data.test_lines])])
+                data1.state = 'request_lab'
+                self.lab_status = 'lab_request'
 
     
     def sticker_barcode_generator(self):

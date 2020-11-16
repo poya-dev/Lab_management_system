@@ -9,7 +9,6 @@
         <tree>  
                 <field name="name"/>
                 <field name="member"/>
-                <field name="duty_state"/>
         </tree>
       </field>
     </record>
@@ -32,10 +31,7 @@
               <group>
                 <field name="name"/>
                 <field name="member"/>
-                <field name="duty_state"/>
-                
               </group>
-
                             
             </sheet>
         </form>
