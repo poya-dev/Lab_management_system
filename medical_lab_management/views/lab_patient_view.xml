@@ -2,6 +2,7 @@
 <odoo>
     <data>
 
+
         <menuitem id="menu_root_lab" name="Laboratory" sequence="40"
                   groups="group_lab_management_user,group_lab_management_technician,group_lab_cashier,group_lab_center_manager,group_lab_nurse,group_lab_reception,group_lab_technician,group_lab_mobile_team,"/>
                   
@@ -108,9 +109,8 @@
             <field name="model">lab.patient</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <search string="Patient">
-                    <field name="patient" />
-                    <field name="blood_group" />
+                <search >
+
                     <field name="name" />
                     <newline />
                     <group expand="0" string="Group By...">
@@ -146,16 +146,8 @@
         </record>
 
 
-        <menuitem 
-            id="menu_lab_patient" 
-            name="Patient" 
-            sequence="10"
-            parent="menu_root_lab" 
-            groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"
-        />
-        <menuitem id="menu_lab_patient_child" name="Patient" sequence="10"
-                  parent="menu_lab_patient" action="act_open_lab_patient_view"
-                  groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
+        <menuitem id="menu_lab_patient" name="Patient" sequence="10" parent="menu_root_lab" groups="group_lab_management_user,group_lab_management_technician,group_lab_reception" />
+        <menuitem id="menu_lab_patient_child" name="Patient" sequence="10" parent="menu_lab_patient" action="act_open_lab_patient_view" groups="group_lab_management_user,group_lab_management_technician,group_lab_reception"/>
 
 
     </data>
