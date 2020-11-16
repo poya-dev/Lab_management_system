@@ -10,7 +10,7 @@ class AssignTeam(models.Model):
     team = fields.Many2one('lab.createmobileteam', domain=[('duty_state', '=', 'waiting')])
 
 
-    patient = fields.Many2many('lab.patient', domain=[('mobile_team_request','=','y'), ])
+    patient = fields.Many2many('lab.patient', domain=[('mobile_team_request','=','y'),('mobile_team_assignment','=','confirm') ])
 
 
     state = fields.Selection([('draft','Draft'), ('assign','Assign'), ('return','returned')], default='draft')

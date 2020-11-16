@@ -1,24 +1,4 @@
 # -*- coding: utf-8 -*-
-#############################################################################
-#
-#    Cybrosys Technologies Pvt. Ltd.
-#
-#    Copyright (C) 2019-TODAY Cybrosys Technologies(<https://www.cybrosys.com>).
-#    Author: Anusha P P @ cybrosys and Niyas Raphy @ cybrosys(odoo@cybrosys.com)
-#
-#    You can modify it under the terms of the GNU AFFERO
-#    GENERAL PUBLIC LICENSE (AGPL v3), Version 3.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU AFFERO GENERAL PUBLIC LICENSE (AGPL v3) for more details.
-#
-#    You should have received a copy of the GNU AFFERO GENERAL PUBLIC LICENSE
-#    (AGPL v3) along with this program.
-#    If not, see <http://www.gnu.org/licenses/>.
-#
-#############################################################################
 
 import datetime
 from odoo import models, fields, api, _
@@ -30,6 +10,7 @@ class LabRequest(models.Model):
     _inherit = ['mail.thread']
     _rec_name = 'lab_request_id'
     _description = 'Lab Request'
+    _order = 'name DESC'
 
     name = fields.Char(string='Lab Test', size=16, readonly=True, required=True, help="Lab result ID", default=lambda *a: '#')
     lab_request_id = fields.Char(string='Appointment ID', help="Lab appointment ID")
@@ -42,6 +23,7 @@ class LabRequest(models.Model):
     lab_result_pdf = fields.Binary()
     mobile_team = fields.Char(string='Mobile Team Request')
     comment = fields.Text('Comment')
+    assign_batch = fields.Selection([('confirm', 'Confirm'),('not_confirm','Not Confirm')], default='not_confirm')
     request_line = fields.One2many('lab.test.attribute', 'test_request_reverse', string="Test Lines")
     
     # lab_result_pdf = fields.Binary()
@@ -71,8 +53,10 @@ class LabRequest(models.Model):
         return self.write({'state': 'cancel'})
 
     def set_to_test_completed(self):
-        if not self.request_line:
+        if not self.request_line.result:
             raise ValidationError(_("No Result Lines Entered !"))
+        # if not self.request_line.lab_test:
+        #     raise ValidationError(_("No Result Entered !"))
         req_obj = self.env['lab.request'].search_count([('app_id', '=', self.app_id.id),
                                                         ('id', '!=', self.id)])
         req_obj_count = self.env['lab.request'].search_count([('app_id', '=', self.app_id.id),

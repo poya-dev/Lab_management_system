@@ -7,8 +7,9 @@
       <field name="model">lab.assignteam</field>
       <field name="arch" type="xml">
         <tree>  
-                <field name="team"/>
-                <field name="patient"/>
+            <field name="team"/>
+            <field name="patient"/>
+            <field name="state"/>
         </tree>
       </field>
     </record>
@@ -19,20 +20,15 @@
       <field name="arch" type="xml">
         <form string="Registration Form">  
             <header>
-
-            <button  name="assign_team" states="draft"  string="Assign" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team,medical_lab_management.group_lab_reception"/>
-            <button  name="return_team" states="assign"   string="Returned" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team"/>
-            <field name="state" widget="statusbar" statusbar_visible="draft,assign,return" statusbar_colors='{"Completed":"blue","Test In Progress":"red","Invoiced":"grey"}'/>
-
+              <button  name="assign_team" states="draft"  string="Assign" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team,medical_lab_management.group_lab_reception"/>
+              <button  name="return_team" states="assign"   string="Returned" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_mobile_team"/>
+              <field name="state" widget="statusbar" statusbar_visible="draft,assign,return" statusbar_colors='{"Completed":"blue","Test In Progress":"red","Invoiced":"grey"}'/>
             </header>
             <sheet>
               <group>
                 <field name="team"/>
                 <field name="patient"/>
-                
               </group>
-
-                            
             </sheet>
         </form>
       </field>

@@ -28,7 +28,7 @@ class LabPatient(models.Model):
     _name = 'lab.patient'
     _rec_name = 'name'
     _description = 'Patient'
-
+    _order = 'name DESC'
     patient = fields.Many2one('res.partner', string='Partner')
     patient_image = fields.Binary(string='Photo')
     patient_id = fields.Char(string='Patient ID')
@@ -61,6 +61,7 @@ class LabPatient(models.Model):
     email = fields.Char(string="Email", required=True)
     mobile_team_request = fields.Selection([('y','Yes'), ('n','No')], 'Mobile Team Request', default='n')
     no_of_visitors = fields.Integer(string='visitors')
+    mobile_team_assignment = fields.Selection([('draft','Draft'),('confirm','Confirmed'),('assign','Assigned')], default='draft')
 
     def count_visitor(self):
         test_obj = self.env["lab.patient"].search([])

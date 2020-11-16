@@ -7,8 +7,9 @@
       <field name="model">lab.createbatch</field>
       <field name="arch" type="xml">
         <tree>  
-                <field name="batch_name"/>
-                <field name="collected_sample"/>
+            <field name="batch_name"/>
+            <field name="collected_sample" domain="([('state', '=', 'sample_collection'),('assign_batch','!=','confirm')])"/>
+            <field name="state" />
         </tree>
       </field>
     </record>
@@ -19,21 +20,16 @@
       <field name="arch" type="xml">
         <form string="Registration Form">  
             <header>
-
-            <button  name="confirm_batch" states="draft"  string="Confirm" class="oe_highlight" type="object"/>
-            <button  name="dispatch_batch" states="confirm"   string="Dispatch" class="oe_highlight" type="object"/>
-            <button  name="receive_batch" states="dispatch"   string="Received" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_technician"/>
-            <field name="state" widget="statusbar" statusbar_visible="draft,confirm,dispatch" statusbar_colors='{"Completed":"blue","Test In Progress":"red","Invoiced":"grey"}'/>
-
+              <button  name="confirm_batch" states="draft"  string="Confirm" class="oe_highlight" type="object"/>
+              <button  name="dispatch_batch" states="confirm"   string="Dispatch" class="oe_highlight" type="object"/>
+              <button  name="receive_batch" states="dispatch"   string="Received" class="oe_highlight" type="object" groups="medical_lab_management.group_lab_technician"/>
+              <field name="state" widget="statusbar" statusbar_visible="draft,confirm,dispatch" statusbar_colors='{"Completed":"blue","Test In Progress":"red","Invoiced":"grey"}'/>
             </header>
             <sheet>
               <group>
                 <field name="batch_name"/>
-                <field name="collected_sample"/>
-                
+                <field name="collected_sample" domain="([('state', '=', 'sample_collection'),('assign_batch','!=','confirm')])"/>
               </group>
-
-                            
             </sheet>
         </form>
       </field>
@@ -51,7 +47,7 @@
 
    <menuitem id="lab_batch_wizard" name="Lab Batch" sequence="20"
         parent="menu_root_lab" action="createbatch_action_window"
-        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse"/>
+        groups="group_lab_management_user,group_lab_management_technician,group_lab_nurse,group_lab_technician"/>
 
   </data>
 </odoo>

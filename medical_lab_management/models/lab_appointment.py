@@ -179,6 +179,8 @@ class Appointment(models.Model):
         template_id = template_obj.create(template_data)
         template_obj.send(template_id)
         self.write({'state': 'confirm'})
+        print(self.patient_id.mobile_team_assignment)
+        self.patient_id.mobile_team_assignment = 'confirm'
 
     def cancel_appointment(self):
         return self.write({'state': 'cancel'})
